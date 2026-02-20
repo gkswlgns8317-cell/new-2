@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { Instagram, Linkedin, MessageCircle } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -17,14 +17,32 @@ const Footer = () => {
               IT 컨설팅 파트너입니다.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Facebook className="w-5 h-5" />
+              <a 
+                href="https://blog.naver.com/coraise" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-400 hover:text-green-500 transition-colors flex items-center justify-center w-8 h-8 border border-gray-700 rounded-full hover:border-green-500"
+                aria-label="Naver Blog"
+              >
+                <span className="font-bold text-xs">N</span>
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Instagram className="w-5 h-5" />
+              <a 
+                href="https://www.instagram.com/explore/locations/469873903123964/coraise/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-400 hover:text-pink-500 transition-colors flex items-center justify-center w-8 h-8 border border-gray-700 rounded-full hover:border-pink-500"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-4 h-4" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Linkedin className="w-5 h-5" />
+              <a 
+                href="https://www.linkedin.com/company/coraise/?viewAsMember=true" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-400 hover:text-blue-500 transition-colors flex items-center justify-center w-8 h-8 border border-gray-700 rounded-full hover:border-blue-500"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -53,9 +71,24 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-6">Contact Us</h3>
             <ul className="space-y-4 text-gray-400 text-sm">
-              <li>Seoul, Gangnam-gu, Teheran-ro 123</li>
-              <li>support@coraise.co.kr</li>
-              <li>02-1234-5678</li>
+              <li>
+                <span className="block text-gray-500 text-xs mb-1">Address</span>
+                서울 성동구 연무장5길 9-16<br/>
+                (성수동2가, 블루스톤타워)<br/>
+                601,602,603호
+              </li>
+              <li>
+                <span className="block text-gray-500 text-xs mb-1">Tel</span>
+                1833-5805
+              </li>
+              <li>
+                <span className="block text-gray-500 text-xs mb-1">Email</span>
+                sales@coraise.co.kr
+              </li>
+              <li>
+                <span className="block text-gray-500 text-xs mb-1">CEO</span>
+                이형준
+              </li>
             </ul>
           </div>
         </div>
