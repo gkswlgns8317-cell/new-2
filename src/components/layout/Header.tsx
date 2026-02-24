@@ -24,19 +24,19 @@ const Header = () => {
         {
           category: '산업별 솔루션',
           items: [
-            { name: '스타트업', path: '/services/startup' },
-            { name: '중소기업', path: '/services/sme' },
-            { name: '교육기관', path: '/services/education' },
-            { name: '이커머스', path: '/services/ecommerce' },
-            { name: '엔터프라이즈', path: '/services/enterprise' },
+            { name: '스타트업', path: '/solutions/startup' },
+            { name: '중소기업', path: '/solutions/sme' },
+            { name: '교육기관', path: '/solutions/education' },
+            { name: '이커머스', path: '/solutions/ecommerce' },
+            { name: '엔터프라이즈', path: '/solutions/enterprise' },
           ]
         },
         {
           category: '+ 성장 단계별 전략',
           items: [
-            { name: '창업 초기 단계', path: '/services/early-stage' },
-            { name: '성장 단계', path: '/services/growth-stage' },
-            { name: '확장 단계', path: '/services/expansion-stage' },
+            { name: '창업 초기 단계', path: '/solutions/early-stage' },
+            { name: '성장 단계', path: '/solutions/growth-stage' },
+            { name: '확장 단계', path: '/solutions/expansion-stage' },
           ]
         }
       ]
