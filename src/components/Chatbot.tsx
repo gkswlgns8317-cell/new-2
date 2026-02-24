@@ -13,6 +13,7 @@ type Message = {
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
+  const [showKakaoMessage, setShowKakaoMessage] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
@@ -37,6 +38,13 @@ const Chatbot = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages, showQuickMenu]);
+
+  const handleKakaoClick = () => {
+    setShowKakaoMessage(true);
+    setTimeout(() => {
+      setShowKakaoMessage(false);
+    }, 3000);
+  };
 
   const handleSendMessage = (text: string) => {
     if (!text.trim()) return;
@@ -140,11 +148,29 @@ const Chatbot = () => {
     <div className="fixed bottom-8 right-8 z-50 flex flex-col items-end space-y-4">
       {/* Floating Buttons */}
       {!isOpen && (
-        <div className="flex flex-col items-center space-y-3">
+        <div className="flex flex-col items-center space-y-3 relative">
           {/* Kakao Button */}
-          <button className="w-14 h-14 bg-[#FEE500] rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform">
+          <button 
+            onClick={handleKakaoClick}
+            className="w-14 h-14 bg-[#FEE500] rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform"
+          >
             <MessageCircle className="w-7 h-7 text-[#3C1E1E] fill-current" />
           </button>
+          
+          {/* Tooltip for Kakao Button */}
+          <AnimatePresence>
+            {showKakaoMessage && (
+              <motion.div
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -10 }}
+                className="absolute right-16 top-2 bg-gray-900 text-white text-xs px-3 py-2 rounded-lg shadow-xl whitespace-nowrap z-50 flex items-center"
+              >
+                <div className="absolute right-[-4px] top-1/2 transform -translate-y-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
+                <span>아직 구축중입니다. 챗봇을 이용해주세요.</span>
+              </motion.div>
+            )}
+          </AnimatePresence>
           
           {/* Chatbot Button */}
           <button 

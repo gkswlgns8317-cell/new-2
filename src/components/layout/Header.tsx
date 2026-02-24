@@ -12,8 +12,8 @@ const Header = () => {
   const navLinks = [
     { name: 'About', path: '/about' },
     { 
-      name: 'Services', 
-      path: '/services',
+      name: 'Solutions', 
+      path: '/solutions',
       dropdown: [
         {
           category: '시나리오',
@@ -37,6 +37,54 @@ const Header = () => {
             { name: '창업 초기 단계', path: '/services/early-stage' },
             { name: '성장 단계', path: '/services/growth-stage' },
             { name: '확장 단계', path: '/services/expansion-stage' },
+          ]
+        }
+      ]
+    },
+    {
+      name: 'Services',
+      path: '/services',
+      type: 'mega',
+      dropdown: [
+        {
+          category: 'Network',
+          items: [
+            { name: 'Fortinet', path: '/services/network?tab=fortinet' },
+            { name: 'AXGATE', path: '/services/network?tab=axgate' },
+            { name: 'NETGEAR', path: '/services/network?tab=netgear' },
+            { name: 'ARUBA', path: '/services/network?tab=aruba' },
+            { name: 'Ruckus', path: '/services/network?tab=ruckus' },
+            { name: 'ZyXEL', path: '/services/network?tab=zyxel' },
+            { name: 'Maintenance', path: '/services/network?tab=maintenance' },
+          ]
+        },
+        {
+          category: 'IT Infra',
+          items: [
+            { name: 'ADPaC (자사 솔루션)', path: '/services/it-infra?tab=adpac' },
+            { name: 'ID PaC (자사 솔루션)', path: '/services/it-infra?tab=idpac' },
+            { name: 'Active Directory', path: '/services/it-infra?tab=ad' },
+          ]
+        },
+        {
+          category: 'Security (SASE)',
+          items: [
+            { name: 'SASE / ZTNA', path: '/services/security?tab=sase' },
+            { name: 'IAM (OKTA)', path: '/services/security?tab=iam' },
+            { name: 'EPP / EDR', path: '/services/security?tab=edr' },
+            { name: 'DLP (유출방지)', path: '/services/security?tab=dlp' },
+            { name: 'CASB (클라우드 감시)', path: '/services/security?tab=casb' },
+            { name: 'Email Security', path: '/services/security?tab=email' },
+            { name: 'NAC (접근제어)', path: '/services/security?tab=nac' },
+          ]
+        },
+        {
+          category: 'Software (Cloud)',
+          items: [
+            { name: 'SaaS (Google/MS)', path: '/services/software?tab=saas' },
+            { name: 'IaaS (Naver Cloud)', path: '/services/software?tab=iaas' },
+            { name: 'Backup (Acronis)', path: '/services/software?tab=backup' },
+            { name: 'Design (Adobe/Unity)', path: '/services/software?tab=design' },
           ]
         }
       ]
@@ -94,22 +142,31 @@ const Header = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 w-64 bg-white shadow-xl rounded-xl py-4 mt-0 border border-gray-100 overflow-hidden"
+                      className={clsx(
+                        "absolute top-full left-0 bg-white shadow-xl rounded-xl py-4 mt-0 border border-gray-100 overflow-hidden",
+                        // @ts-ignore
+                        link.type === 'mega' ? "w-[680px] -left-[240px] grid grid-cols-4 gap-2 px-6" : "w-64"
+                      )}
                     >
                       {link.dropdown.map((section, idx) => (
-                        <div key={idx} className="mb-4 last:mb-0">
-                          <div className="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider">
+                        <div key={idx} className={clsx("mb-4 last:mb-0", 
+                          // @ts-ignore
+                          link.type === 'mega' && "mb-0"
+                        )}>
+                          <div className="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider border-b border-gray-50 mb-2">
                             {section.category}
                           </div>
-                          {section.items.map((item) => (
-                            <Link
-                              key={item.name}
-                              to={item.path}
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors"
-                            >
-                              {item.name}
-                            </Link>
-                          ))}
+                          <div className="space-y-1">
+                            {section.items.map((item) => (
+                              <Link
+                                key={item.name}
+                                to={item.path}
+                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors rounded-md"
+                              >
+                                {item.name}
+                              </Link>
+                            ))}
+                          </div>
                         </div>
                       ))}
                     </motion.div>

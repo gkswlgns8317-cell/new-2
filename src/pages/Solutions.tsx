@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { CheckCircle, ArrowRight, Server, Shield, Users, Globe, BarChart, ShieldCheck, Settings, AlertCircle, Zap, Lock, TrendingUp, Wifi, UserCheck, Key, ShoppingCart, CreditCard, Activity, Building, Rocket, Cloud, Monitor, FileText, Database, Network, Briefcase } from 'lucide-react';
 
-const Service = () => {
+const Solutions = () => {
   const { type } = useParams();
 
   // Define types for the data structure
@@ -513,4 +513,4 @@ const Service = () => {
   );
 };
 
-export default Service;
+export default Solutions;

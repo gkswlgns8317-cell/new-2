@@ -7,9 +7,13 @@ import {
   ShieldCheck, 
   ClipboardList, 
   ArrowRight, 
-  CheckCircle2, 
+  Check,
   Building2,
-  Check
+  Gamepad2,
+  FlaskConical,
+  Coins,
+  ShoppingBag,
+  MessageSquare
 } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -31,7 +35,7 @@ const Cases = () => {
         operate: "계정 생명주기 관리, 자산 추적, 유지보수"
       },
       effect: "성장에 맞춰 확장 가능한 IT 기반 구축. 초기 투자 최소화하면서도 미래 대비 가능한 아키텍처 확보.",
-      link: "/services/startup"
+      link: "/solutions/startup"
     },
     {
       id: 2,
@@ -49,7 +53,7 @@ const Cases = () => {
         operate: "24/7 모니터링, 백업/재해 복구 체계"
       },
       effect: "운영 중단 없이 최신 인프라로 전환. 보안 강화 및 규제 준수로 리스크 최소화.",
-      link: "/services/sme"
+      link: "/solutions/sme"
     },
     {
       id: 3,
@@ -67,7 +71,7 @@ const Cases = () => {
         operate: "이전 후 안정화, 자산 재등록/관리"
       },
       effect: "이전 프로젝트 일정 준수 및 비즈니스 중단 최소화. 새 공간에 최적화된 IT 환경 확보.",
-      link: "/services/expansion-stage"
+      link: "/solutions/expansion-stage"
     },
     {
       id: 4,
@@ -85,7 +89,7 @@ const Cases = () => {
         operate: "지속적 모니터링, 감사 지원, 정책 업데이트"
       },
       effect: "보안 인증 취득 및 유지. 고객신뢰도 향상 및 규제 리스크 해소.",
-      link: "/services/security"
+      link: "/solutions/security"
     },
     {
       id: 5,
@@ -103,7 +107,7 @@ const Cases = () => {
         operate: "정기 점검, 교체 계획, 라이선스 갱신 관리"
       },
       effect: "자산 가시성 확보. 예방적 유지보수로 돌발 비용 감소. 컴플라이언스 대응 용이.",
-      link: "/services/maintenance"
+      link: "/solutions/maintenance"
     }
   ];
 
@@ -111,10 +115,11 @@ const Cases = () => {
     {
       id: 1,
       name: "LVE코리아",
-      type: "스타트업 • 29명",
+      type: "스타트업 • 30명",
       quote: "\"Google Workspace와 네트워크 구축으로 업무 효율 대폭 상승\"",
       result: "IT 인프라 안정화 및 생산성 향상",
-      services: ["Network", "Security", "Google WS", "SaaS", "Helpdesk", "Maintenance"]
+      services: ["Network", "Security", "Google WS", "SaaS", "Helpdesk", "Maintenance"],
+      logoIcon: <Rocket className="w-8 h-8 text-gray-400" />
     },
     {
       id: 2,
@@ -122,15 +127,80 @@ const Cases = () => {
       type: "중소기업 • 60명",
       quote: "\"전사 보안 체계 재정비로 ISMS 인증 통과\"",
       result: "보안 인증 획득 및 신뢰도 상승",
-      services: ["Security Audit", "ISMS-P", "Firewall", "VPN", "Endpoint", "Monitoring"]
+      services: ["Security Audit", "ISMS-P", "Firewall", "VPN", "Endpoint", "Monitoring"],
+      logoIcon: <ShieldCheck className="w-8 h-8 text-gray-400" />
     },
     {
       id: 3,
-      name: "서울대학교",
-      type: "교육기관 • 5,000명",
-      quote: "\"캠퍼스 전역 Wi-Fi 안정화 및 보안 강화\"",
-      result: "학생 만족도 40% 증가",
-      services: ["Wireless", "Network", "Auth", "Security", "Maintenance", "Support"]
+      name: "앤트스튜디오",
+      type: "콘텐츠/미디어 • 150명",
+      quote: "\"오리지널 IP로 완성하는 오래도록 사랑 받는 웹툰\"",
+      result: "안정적인 창작 환경 구축 및 협업 효율 증대",
+      services: ["Network", "Security", "Google WS", "Adobe", "NAS", "Backup"],
+      logoIcon: <Building2 className="w-8 h-8 text-gray-400" />
+    },
+    {
+      id: 4,
+      name: "DSRV",
+      type: "핀테크/블록체인 • 50명",
+      quote: "\"블록체인 인프라로 안정적인 금융 서비스\"",
+      result: "금융 규제 준수 및 무중단 인프라 운영",
+      services: ["Blockchain Infra", "Security", "ISMS", "24/7 Monitoring", "Cloud"],
+      logoIcon: <Coins className="w-8 h-8 text-gray-400" />
+    },
+    {
+      id: 5,
+      name: "네오이뮨텍",
+      type: "바이오/제약 • 80명",
+      quote: "\"면역치료제 개발, 안정적인 네트워크로\"",
+      result: "연구 데이터 보호 및 글로벌 협업 환경 조성",
+      services: ["Network Rental", "Fortinet", "Security", "Global Network", "Bio-Pharma IT"],
+      logoIcon: <FlaskConical className="w-8 h-8 text-gray-400" />
+    },
+    {
+      id: 6,
+      name: "베이글코드",
+      type: "게임 • 200명",
+      quote: "\"게임 회사에서 끊김없는 네트워크를\"",
+      result: "글로벌 게임 서비스 안정성 확보 및 장애 대응",
+      services: ["CRN (Rental)", "COMON (Monitoring)", "Global Network", "AWS", "Gaming Infra"],
+      logoIcon: <Gamepad2 className="w-8 h-8 text-gray-400" />
+    },
+    {
+      id: 7,
+      name: "채널코퍼레이션",
+      type: "B2B SaaS • 100명",
+      quote: "\"SMB 비즈니스의 핵심, 채널톡\"",
+      result: "빠른 네트워크 지원으로 업무 효율 극대화",
+      services: ["Network", "Helpdesk", "SaaS", "Startup IT", "Global Expansion"],
+      logoIcon: <MessageSquare className="w-8 h-8 text-gray-400" />
+    },
+    {
+      id: 8,
+      name: "아이소이",
+      type: "코스메틱/이커머스 • 120명",
+      quote: "\"끊김없는 무선 구축, 아이소이\"",
+      result: "사무실 이전 및 물류 센터 네트워크 최적화",
+      services: ["Wireless", "Network", "Logistics IT", "E-commerce Infra", "Security"],
+      logoIcon: <ShoppingBag className="w-8 h-8 text-gray-400" />
+    },
+    {
+      id: 9,
+      name: "올리브인터내셔널",
+      type: "글로벌 K뷰티 • 70명",
+      quote: "\"글로벌 K뷰티, 올리브인터내셔널\"",
+      result: "ERP 구축 및 IT 인프라 통합 관리",
+      services: ["ERP", "Network", "NAS", "Global IT", "E-commerce"],
+      logoIcon: <ShoppingBag className="w-8 h-8 text-gray-400" />
+    },
+    {
+      id: 10,
+      name: "컨트롤나인",
+      type: "게임 • 40명",
+      quote: "\"게임회사에서 총무로 살아남는 법\"",
+      result: "신사옥 구축 및 IT 인프라 원스톱 세팅",
+      services: ["Office Setup", "Network", "Active Directory", "Software Licensing", "PC/Server"],
+      logoIcon: <Gamepad2 className="w-8 h-8 text-gray-400" />
     }
   ];
 
@@ -174,8 +244,18 @@ const Cases = () => {
                     {scenario.icon}
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg text-gray-900">{scenario.title}</h3>
-                    <p className="text-sm text-gray-500 mt-1">{scenario.quote}</p>
+                    <motion.h3 
+                      whileHover={{ scale: 1.05, color: "#ea580c" }}
+                      className="font-bold text-lg text-gray-900 origin-left cursor-default"
+                    >
+                      {scenario.title}
+                    </motion.h3>
+                    <motion.p 
+                      whileHover={{ scale: 1.02 }}
+                      className="text-sm text-gray-500 mt-1 origin-left cursor-default"
+                    >
+                      {scenario.quote}
+                    </motion.p>
                   </div>
                 </div>
 
@@ -184,19 +264,23 @@ const Cases = () => {
                     <h4 className="font-bold text-sm text-gray-900 mb-3 border-b border-gray-100 pb-2">이런 문제가 있나요?</h4>
                     <ul className="space-y-2">
                       {scenario.problems.map((prob, idx) => (
-                        <li key={idx} className="text-sm text-gray-600 flex items-start">
+                        <motion.li 
+                          key={idx} 
+                          whileHover={{ x: 5, color: "#111827" }}
+                          className="text-sm text-gray-600 flex items-start cursor-default"
+                        >
                           <span className="w-1.5 h-1.5 bg-gray-300 rounded-full mr-2 mt-1.5 flex-shrink-0"></span>
                           {prob}
-                        </li>
+                        </motion.li>
                       ))}
                     </ul>
                   </div>
                   <div>
                     <h4 className="font-bold text-sm text-gray-900 mb-3 border-b border-gray-100 pb-2">Coraise가 해드리는 것</h4>
                     <ul className="space-y-2 text-sm text-gray-600">
-                      <li><span className="font-bold text-gray-800">Design:</span> {scenario.solutions.design}</li>
-                      <li><span className="font-bold text-gray-800">Build:</span> {scenario.solutions.build}</li>
-                      <li><span className="font-bold text-gray-800">Operate:</span> {scenario.solutions.operate}</li>
+                      <motion.li whileHover={{ x: 5 }} className="cursor-default"><span className="font-bold text-gray-800">Design:</span> {scenario.solutions.design}</motion.li>
+                      <motion.li whileHover={{ x: 5 }} className="cursor-default"><span className="font-bold text-gray-800">Build:</span> {scenario.solutions.build}</motion.li>
+                      <motion.li whileHover={{ x: 5 }} className="cursor-default"><span className="font-bold text-gray-800">Operate:</span> {scenario.solutions.operate}</motion.li>
                     </ul>
                   </div>
                 </div>
@@ -243,23 +327,36 @@ const Cases = () => {
           >
             {/* Logo Area */}
             <div className="w-full md:w-48 flex-shrink-0">
-              <div className="bg-gray-200 w-full h-32 rounded-lg flex items-center justify-center text-gray-500 font-bold text-sm">
-                로고 아이콘
+              <div className="bg-gray-100 w-full h-32 rounded-lg flex items-center justify-center text-gray-500 font-bold text-sm border border-gray-200">
+                {item.logoIcon}
               </div>
             </div>
 
             {/* Content Area */}
             <div className="flex-grow">
               <div className="flex items-baseline gap-3 mb-2">
-                <h3 className="text-xl font-bold text-gray-900">{item.name}</h3>
+                <motion.h3 
+                  whileHover={{ scale: 1.05, color: "#ea580c" }}
+                  className="text-xl font-bold text-gray-900 origin-left cursor-default"
+                >
+                  {item.name}
+                </motion.h3>
                 <span className="text-sm text-gray-500">{item.type}</span>
               </div>
-              <p className="text-orange-600 font-medium mb-6">{item.quote}</p>
+              <motion.p 
+                whileHover={{ scale: 1.02 }}
+                className="text-orange-600 font-medium mb-6 origin-left cursor-default"
+              >
+                {item.quote}
+              </motion.p>
               
-              <div className="flex items-center text-sm text-green-600 font-medium bg-green-50 px-3 py-2 rounded-md inline-block">
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center text-sm text-green-600 font-medium bg-green-50 px-3 py-2 rounded-md inline-block origin-left cursor-default"
+              >
                 <Check className="w-4 h-4 mr-2" />
                 {item.result}
-              </div>
+              </motion.div>
             </div>
 
             {/* Services Grid */}
@@ -267,9 +364,13 @@ const Cases = () => {
               <h4 className="text-xs font-bold text-gray-900 mb-3">구독 프로그램 / 서비스</h4>
               <div className="grid grid-cols-3 gap-2">
                 {item.services.map((service, idx) => (
-                  <div key={idx} className="bg-gray-100 h-16 rounded-md flex items-center justify-center p-1 text-center">
+                  <motion.div 
+                    key={idx} 
+                    whileHover={{ scale: 1.1, backgroundColor: "#e5e7eb", color: "#000" }}
+                    className="bg-gray-100 h-16 rounded-md flex items-center justify-center p-1 text-center cursor-default"
+                  >
                     <span className="text-[10px] text-gray-500 font-medium leading-tight">{service}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>

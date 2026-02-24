@@ -10,35 +10,35 @@ const Home = () => {
       title: '시나리오1\n: 성장하는 스타트업/스케일업',
       desc: '창업자 1-2명에서 조직이 커지면서 IT 인프라가 필요해졌어요',
       icon: <Rocket className="w-6 h-6 text-blue-500" />,
-      path: '/services/startup'
+      path: '/solutions/startup'
     },
     {
       id: 2,
       title: '시나리오2\n: 기존 시스템 고도화/이전',
       desc: '레거시 시스템을 업그레이드 하면서 기존 운영에 영향을 최소화하고 싶어요',
       icon: <Server className="w-6 h-6 text-green-500" />,
-      path: '/services/sme'
+      path: '/solutions/sme'
     },
     {
       id: 3,
       title: '시나리오3\n: 중견/대기업 사옥 이전 및 확장',
       desc: '오피스 이전하거나 확장하면서 IT 인프라를 재구축해야 해요',
       icon: <Building2 className="w-6 h-6 text-orange-500" />,
-      path: '/services/enterprise'
+      path: '/solutions/enterprise'
     },
     {
       id: 4,
       title: '시나리오4\n: 보안/인증 대응',
       desc: 'ISMS-P, ISO, 또는 고객사 보안 요구사항을 충족해야 해요',
       icon: <ShieldCheck className="w-6 h-6 text-purple-500" />,
-      path: '/services/security'
+      path: '/solutions/security'
     },
     {
       id: 5,
       title: '시나리오5\n: 자산/유지보수 운영',
       desc: '하드웨어 조달부터 자산 추적, 지속적 유지보수까지 통합 관리가 필요해요',
       icon: <Settings className="w-6 h-6 text-gray-500" />,
-      path: '/services/maintenance'
+      path: '/solutions/maintenance'
     }
   ];
 
