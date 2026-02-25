@@ -7,6 +7,7 @@ const QnA = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedQuestion, setSelectedQuestion] = useState<any>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   
   // Form state
@@ -19,11 +20,56 @@ const QnA = () => {
   });
 
   const [questions, setQuestions] = useState([
-    { id: 1, status: '답변완료', title: 'SaaS 통합 관리 솔루션 견적 문의드립니다.', author: '김**', date: '2024.03.15', isSecret: true },
-    { id: 2, status: '답변완료', title: '스타트업 패키지 구성 변경이 가능한가요?', author: '이**', date: '2024.03.14', isSecret: false },
-    { id: 3, status: '대기중', title: 'ISMS-P 인증 컨설팅 기간 문의', author: '박**', date: '2024.03.14', isSecret: true },
-    { id: 4, status: '답변완료', title: '기존 AD 서버 마이그레이션 지원 여부', author: '최**', date: '2024.03.12', isSecret: false },
-    { id: 5, status: '답변완료', title: '네트워크 유지보수 SLA 기준이 궁금합니다.', author: '정**', date: '2024.03.10', isSecret: true },
+    { 
+      id: 1, 
+      status: '답변완료', 
+      title: 'SaaS 통합 관리 솔루션 견적 문의드립니다.', 
+      author: '김**', 
+      date: '2024.03.15', 
+      isSecret: true,
+      content: "현재 Google Workspace를 사용 중인데, 입퇴사자 관리가 너무 힘듭니다. ID PaC 솔루션을 도입하면 비용이 어느 정도 될까요? 직원 수는 약 150명입니다.",
+      answer: "안녕하세요, 코레이즈입니다. ID PaC은 사용자 수 기반의 라이선스 정책을 가지고 있습니다. 150명 규모라면 Standard 플랜이 적합해 보이며, 상세 견적은 메일로 송부드렸습니다. 추가 문의사항은 언제든 연락주세요."
+    },
+    { 
+      id: 2, 
+      status: '답변완료', 
+      title: '스타트업 패키지 구성 변경이 가능한가요?', 
+      author: '이**', 
+      date: '2024.03.14', 
+      isSecret: false,
+      content: "초기 스타트업입니다. 제공해주시는 패키지에서 불필요한 부분은 빼고, 필요한 보안 솔루션만 추가해서 구성할 수 있는지 궁금합니다.",
+      answer: "네, 가능합니다! 코레이즈의 모든 솔루션은 모듈형으로 구성되어 있어 고객사의 니즈에 맞춰 커스터마이징이 가능합니다. 무료 진단을 신청해주시면 맞춤형 제안을 드리겠습니다."
+    },
+    { 
+      id: 3, 
+      status: '대기중', 
+      title: 'ISMS-P 인증 컨설팅 기간 문의', 
+      author: '박**', 
+      date: '2024.03.14', 
+      isSecret: true,
+      content: "핀테크 기업입니다. ISMS-P 인증을 준비하려고 하는데, 컨설팅부터 인증 획득까지 대략적인 기간이 얼마나 소요될까요?",
+      answer: null
+    },
+    { 
+      id: 4, 
+      status: '답변완료', 
+      title: '기존 AD 서버 마이그레이션 지원 여부', 
+      author: '최**', 
+      date: '2024.03.12', 
+      isSecret: false,
+      content: "현재 사내에 구축된 노후화된 AD 서버를 클라우드(Azure) 또는 신규 서버로 마이그레이션 하고 싶습니다. 데이터 손실 없이 지원 가능한가요?",
+      answer: "물론입니다. 코레이즈는 다수의 AD 마이그레이션 경험을 보유하고 있습니다. 사전 진단을 통해 마이그레이션 시나리오를 설계하고, 업무 중단 없이 안전하게 이관해드립니다."
+    },
+    { 
+      id: 5, 
+      status: '답변완료', 
+      title: '네트워크 유지보수 SLA 기준이 궁금합니다.', 
+      author: '정**', 
+      date: '2024.03.10', 
+      isSecret: true,
+      content: "24/7 관제 서비스를 고려 중입니다. 장애 발생 시 대응 시간(SLA) 기준이 어떻게 되는지 상세 자료를 받아볼 수 있을까요?",
+      answer: "SLA 기준은 계약 등급(Gold/Silver/Bronze)에 따라 상이합니다. 일반적으로 장애 접수 후 30분 이내 분석 착수, 4시간 이내 복구를 목표로 하고 있습니다. 상세 SLA 테이블은 메일로 전달드리겠습니다."
+    },
   ]);
 
   const faqs = [
@@ -93,6 +139,14 @@ const QnA = () => {
     });
     setIsModalOpen(false);
     alert('질문이 등록되었습니다.');
+  };
+
+  const handleQuestionClick = (question: any) => {
+    if (question.isSecret && !isAdmin) {
+      alert('비공개 글입니다.');
+    } else {
+      setSelectedQuestion(question);
+    }
   };
 
   return (
@@ -195,7 +249,11 @@ const QnA = () => {
             </div>
             <div className="divide-y divide-gray-100">
               {questions.map((item) => (
-                <div key={item.id} className="grid grid-cols-12 py-4 px-6 text-sm hover:bg-gray-50 transition-colors cursor-pointer group">
+                <div 
+                  key={item.id} 
+                  onClick={() => handleQuestionClick(item)}
+                  className="grid grid-cols-12 py-4 px-6 text-sm hover:bg-gray-50 transition-colors cursor-pointer group"
+                >
                   <div className="col-span-2 md:col-span-1 text-center flex justify-center items-center">
                     <span className={`px-2 py-1 rounded text-[10px] font-bold ${
                       item.status === '답변완료' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-500'
@@ -233,6 +291,82 @@ const QnA = () => {
           </div>
         </div>
       </div>
+
+      {/* Question Detail Modal */}
+      <AnimatePresence>
+        {selectedQuestion && (
+          <>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 z-50 backdrop-blur-sm"
+              onClick={() => setSelectedQuestion(null)}
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
+            >
+              <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden pointer-events-auto max-h-[90vh] flex flex-col">
+                <div className="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                  <h3 className="font-bold text-lg text-gray-900">질문 상세</h3>
+                  <button onClick={() => setSelectedQuestion(null)} className="text-gray-400 hover:text-gray-600">
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+                
+                <div className="p-6 overflow-y-auto">
+                  <div className="mb-6">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className={`px-2 py-1 rounded text-[10px] font-bold ${
+                        selectedQuestion.status === '답변완료' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-500'
+                      }`}>
+                        {selectedQuestion.status}
+                      </span>
+                      <span className="text-xs text-gray-500">{selectedQuestion.date}</span>
+                      <span className="text-xs text-gray-500">|</span>
+                      <span className="text-xs text-gray-500">{selectedQuestion.author}</span>
+                    </div>
+                    <h2 className="text-xl font-bold text-gray-900 mb-4">{selectedQuestion.title}</h2>
+                    <div className="bg-gray-50 p-4 rounded-lg text-gray-700 leading-relaxed whitespace-pre-wrap">
+                      {selectedQuestion.content || "내용이 없습니다."}
+                    </div>
+                  </div>
+
+                  {selectedQuestion.answer && (
+                    <div className="border-t border-gray-100 pt-6">
+                      <h3 className="font-bold text-gray-900 mb-3 flex items-center text-blue-600">
+                        <MessageCircle className="w-4 h-4 mr-2" />
+                        답변 내용
+                      </h3>
+                      <div className="bg-blue-50 p-4 rounded-lg text-gray-700 leading-relaxed whitespace-pre-wrap border border-blue-100">
+                        {selectedQuestion.answer}
+                      </div>
+                    </div>
+                  )}
+                  
+                  {!selectedQuestion.answer && (
+                    <div className="border-t border-gray-100 pt-6 text-center py-8 text-gray-500 bg-gray-50 rounded-lg border border-dashed border-gray-200">
+                      아직 답변이 등록되지 않았습니다.
+                    </div>
+                  )}
+                </div>
+
+                <div className="p-4 border-t border-gray-100 bg-gray-50 flex justify-end">
+                  <button 
+                    onClick={() => setSelectedQuestion(null)}
+                    className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
+                  >
+                    닫기
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Question Modal */}
       <AnimatePresence>
