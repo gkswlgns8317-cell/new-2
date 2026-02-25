@@ -265,14 +265,14 @@ const About = () => {
                 <img 
                   src="/images/ceo1.png" 
                   alt="CEO 1" 
-                  className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <div className="group relative overflow-hidden rounded-lg shadow-lg">
                 <img 
                   src="/images/ceo2.png" 
                   alt="CEO 2" 
-                  className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
             </div>
