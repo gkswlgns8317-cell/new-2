@@ -9,11 +9,7 @@ import {
   ArrowRight, 
   Check,
   Building2,
-  Gamepad2,
-  FlaskConical,
-  Coins,
-  ShoppingBag,
-  MessageSquare
+  ExternalLink
 } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -114,12 +110,13 @@ const Cases = () => {
   const customerCases = [
     {
       id: 1,
-      name: "LVE코리아",
+      name: "라이브커넥트",
       type: "스타트업 • 30명",
       quote: "\"Google Workspace와 네트워크 구축으로 업무 효율 대폭 상승\"",
       result: "IT 인프라 안정화 및 생산성 향상",
       services: ["Network", "Security", "Google WS", "SaaS", "Helpdesk", "Maintenance"],
-      logoIcon: <Rocket className="w-8 h-8 text-gray-400" />
+      logoImage: "/images/othercompany1.png",
+      blogUrl: "https://blog.naver.com/coraise/224162559812"
     },
     {
       id: 2,
@@ -128,7 +125,8 @@ const Cases = () => {
       quote: "\"전사 보안 체계 재정비로 ISMS 인증 통과\"",
       result: "보안 인증 획득 및 신뢰도 상승",
       services: ["Security Audit", "ISMS-P", "Firewall", "VPN", "Endpoint", "Monitoring"],
-      logoIcon: <ShieldCheck className="w-8 h-8 text-gray-400" />
+      logoImage: "/images/othercompany2.png",
+      blogUrl: "https://blog.naver.com/coraise/224110370814"
     },
     {
       id: 3,
@@ -137,7 +135,8 @@ const Cases = () => {
       quote: "\"오리지널 IP로 완성하는 오래도록 사랑 받는 웹툰\"",
       result: "안정적인 창작 환경 구축 및 협업 효율 증대",
       services: ["Network", "Security", "Google WS", "Adobe", "NAS", "Backup"],
-      logoIcon: <Building2 className="w-8 h-8 text-gray-400" />
+      logoImage: "/images/othercompany3.png",
+      blogUrl: "https://blog.naver.com/coraise/224065598476"
     },
     {
       id: 4,
@@ -146,7 +145,8 @@ const Cases = () => {
       quote: "\"블록체인 인프라로 안정적인 금융 서비스\"",
       result: "금융 규제 준수 및 무중단 인프라 운영",
       services: ["Blockchain Infra", "Security", "ISMS", "24/7 Monitoring", "Cloud"],
-      logoIcon: <Coins className="w-8 h-8 text-gray-400" />
+      logoImage: "/images/othercompany4.png",
+      blogUrl: "https://blog.naver.com/coraise/224026064331"
     },
     {
       id: 5,
@@ -155,7 +155,8 @@ const Cases = () => {
       quote: "\"면역치료제 개발, 안정적인 네트워크로\"",
       result: "연구 데이터 보호 및 글로벌 협업 환경 조성",
       services: ["Network Rental", "Fortinet", "Security", "Global Network", "Bio-Pharma IT"],
-      logoIcon: <FlaskConical className="w-8 h-8 text-gray-400" />
+      logoImage: "/images/othercompany5.png",
+      blogUrl: "https://blog.naver.com/coraise/223904931342"
     },
     {
       id: 6,
@@ -164,7 +165,8 @@ const Cases = () => {
       quote: "\"게임 회사에서 끊김없는 네트워크를\"",
       result: "글로벌 게임 서비스 안정성 확보 및 장애 대응",
       services: ["CRN (Rental)", "COMON (Monitoring)", "Global Network", "AWS", "Gaming Infra"],
-      logoIcon: <Gamepad2 className="w-8 h-8 text-gray-400" />
+      logoImage: "/images/othercompany6.png",
+      blogUrl: "https://blog.naver.com/coraise/223848818125"
     },
     {
       id: 7,
@@ -173,7 +175,8 @@ const Cases = () => {
       quote: "\"SMB 비즈니스의 핵심, 채널톡\"",
       result: "빠른 네트워크 지원으로 업무 효율 극대화",
       services: ["Network", "Helpdesk", "SaaS", "Startup IT", "Global Expansion"],
-      logoIcon: <MessageSquare className="w-8 h-8 text-gray-400" />
+      logoImage: "/images/othercompany7.png",
+      blogUrl: "https://blog.naver.com/coraise/223805123938"
     },
     {
       id: 8,
@@ -182,7 +185,8 @@ const Cases = () => {
       quote: "\"끊김없는 무선 구축, 아이소이\"",
       result: "사무실 이전 및 물류 센터 네트워크 최적화",
       services: ["Wireless", "Network", "Logistics IT", "E-commerce Infra", "Security"],
-      logoIcon: <ShoppingBag className="w-8 h-8 text-gray-400" />
+      logoImage: "/images/othercompany8.png",
+      blogUrl: "https://blog.naver.com/coraise/223777958324"
     },
     {
       id: 9,
@@ -191,7 +195,8 @@ const Cases = () => {
       quote: "\"글로벌 K뷰티, 올리브인터내셔널\"",
       result: "ERP 구축 및 IT 인프라 통합 관리",
       services: ["ERP", "Network", "NAS", "Global IT", "E-commerce"],
-      logoIcon: <ShoppingBag className="w-8 h-8 text-gray-400" />
+      logoImage: "/images/othercompany9.png",
+      blogUrl: "https://blog.naver.com/coraise/223736784716"
     },
     {
       id: 10,
@@ -200,7 +205,8 @@ const Cases = () => {
       quote: "\"게임회사에서 총무로 살아남는 법\"",
       result: "신사옥 구축 및 IT 인프라 원스톱 세팅",
       services: ["Office Setup", "Network", "Active Directory", "Software Licensing", "PC/Server"],
-      logoIcon: <Gamepad2 className="w-8 h-8 text-gray-400" />
+      logoImage: "/images/othercompany10.png",
+      blogUrl: "https://blog.naver.com/coraise/223736782924"
     }
   ];
 
@@ -327,8 +333,12 @@ const Cases = () => {
           >
             {/* Logo Area */}
             <div className="w-full md:w-48 flex-shrink-0">
-              <div className="bg-gray-100 w-full h-32 rounded-lg flex items-center justify-center text-gray-500 font-bold text-sm border border-gray-200">
-                {item.logoIcon}
+              <div className="bg-white w-full h-32 rounded-lg flex items-center justify-center border border-gray-200 overflow-hidden p-4">
+                <img 
+                  src={item.logoImage} 
+                  alt={`${item.name} Logo`} 
+                  className="max-w-full max-h-full object-contain"
+                />
               </div>
             </div>
 
@@ -357,6 +367,19 @@ const Cases = () => {
                 <Check className="w-4 h-4 mr-2" />
                 {item.result}
               </motion.div>
+              
+              {item.blogUrl && (
+                <div className="mt-4">
+                  <a 
+                    href={item.blogUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-sm font-bold text-blue-600 hover:text-blue-800 hover:underline transition-colors"
+                  >
+                    인터뷰 보러가기 <ExternalLink className="w-4 h-4 ml-1" />
+                  </a>
+                </div>
+              )}
             </div>
 
             {/* Services Grid */}

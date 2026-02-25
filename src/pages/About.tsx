@@ -85,23 +85,12 @@ const About = () => {
   return (
     <div className="bg-white font-sans">
       {/* Hero Section */}
-      <section className="relative h-[600px] flex items-center justify-center text-white overflow-hidden">
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: "url('/images/about_hero.jpg')", // Beach Jump photo
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-black/50"></div>
-        </div>
-        
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <section className="relative bg-gradient-to-b from-orange-400 to-slate-900 text-white py-32 text-center px-4 overflow-hidden">
+        <div className="max-w-4xl mx-auto relative z-10">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
+            className="text-4xl md:text-5xl font-bold mb-6 leading-tight"
           >
             기업 IT 환경의<br />
             최고 파트너, 코레이즈
@@ -119,123 +108,30 @@ const About = () => {
       </section>
 
       {/* About Us Text Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">About Us</h2>
-              <p className="text-gray-600 leading-relaxed mb-8 text-lg">
-                코레이즈는 2016년 설립 이후 기업의 IT 환경을 전문적으로 진단하고 최적화하는 IT 컨설팅 전문 기업입니다.<br /><br />
-                네트워크, 보안, 클라우드 등 IT 전 영역에서 기업의 성장 단계와 산업 특성에 맞는 맞춤형 솔루션을 제공합니다.
-                고객과의 신뢰를 최우선 가치로 생각하며, 함께 성장하는 비즈니스 파트너입니다.
-              </p>
-              
-              <div className="grid grid-cols-3 gap-8">
-                <div>
-                  <div className="text-4xl font-bold text-blue-600 mb-2">14+</div>
-                  <div className="text-gray-500 text-sm font-medium">Years of Experience</div>
-                </div>
-                <div>
-                  <div className="text-4xl font-bold text-blue-600 mb-2">2,600+</div>
-                  <div className="text-gray-500 text-sm font-medium">Satisfied Clients</div>
-                </div>
-                <div>
-                  <div className="text-4xl font-bold text-blue-600 mb-2">50+</div>
-                  <div className="text-gray-500 text-sm font-medium">IT Experts</div>
-                </div>
-              </div>
-            </div>
-            <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-xl">
-              <img 
-                src="/images/about_building.jpg" // Building photo
-                alt="Coraise HQ" 
-                className="absolute inset-0 w-full h-full object-cover"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "https://picsum.photos/800/1000?random=1";
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Culture Section */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Culture</h2>
-            <p className="text-gray-600">함께 성장하고 즐겁게 일하는 코레이즈의 문화를 소개합니다.</p>
-          </div>
-          <div className="rounded-2xl overflow-hidden shadow-xl h-[500px] relative group">
-            <img 
-              src="/images/about_culture.jpg" // Hill Group photo
-              alt="Team Culture" 
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = "https://picsum.photos/1920/1080?random=2";
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-12">
-              <div className="text-white">
-                <h3 className="text-2xl font-bold mb-2">One Team, One Goal</h3>
-                <p className="text-gray-200">서로를 존중하며 최고의 성과를 만들어갑니다.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Leadership Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Leadership</h2>
-            <p className="text-gray-600">코레이즈를 이끌어가는 리더들을 소개합니다.</p>
-          </div>
+      <section className="py-24 bg-white text-center">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">About Us</h2>
+          <p className="text-gray-600 leading-relaxed mb-16 max-w-3xl mx-auto">
+            코레이즈는 2016년 설립 이후 기업의 IT 환경을 전문적으로 진단하고 최적화하는 IT 컨설팅 전문 기업입니다.<br className="hidden md:block" />
+            네트워크, 보안, 클라우드 등 IT 전 영역에서 기업의 성장 단계와 산업 특성에 맞는 맞춤형 솔루션을 제공합니다.
+          </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-            {/* Profile 1 */}
-            <div className="group">
-              <div className="aspect-[3/4] rounded-xl overflow-hidden mb-6 shadow-lg relative">
-                <img 
-                  src="/images/about_profile_1.jpg" // Sunglasses photo
-                  alt="Leadership 1" 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 grayscale group-hover:grayscale-0"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = "https://picsum.photos/600/800?random=3";
-                  }}
-                />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-1">Jain Jeon (James)</h3>
-              <p className="text-orange-600 font-medium mb-3">CEO / Co-Founder</p>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                기술과 비즈니스의 조화를 통해 고객에게 최적의 가치를 전달합니다.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-blue-50 p-8 rounded-2xl">
+              <div className="text-4xl font-bold text-blue-600 mb-2">14+</div>
+              <div className="text-gray-500 text-sm font-medium">Years of Experience</div>
             </div>
-
-            {/* Profile 2 */}
-            <div className="group">
-              <div className="aspect-[3/4] rounded-xl overflow-hidden mb-6 shadow-lg relative">
-                <img 
-                  src="/images/about_profile_2.jpg" // Restaurant photo
-                  alt="Leadership 2" 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 grayscale group-hover:grayscale-0"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = "https://picsum.photos/600/800?random=4";
-                  }}
-                />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-1">Co-Founder</h3>
-              <p className="text-orange-600 font-medium mb-3">CTO / Co-Founder</p>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                안정적이고 혁신적인 기술 인프라를 구축하여 비즈니스 성장을 지원합니다.
-              </p>
+            <div className="bg-blue-50 p-8 rounded-2xl">
+              <div className="text-4xl font-bold text-blue-600 mb-2">2,600+</div>
+              <div className="text-gray-500 text-sm font-medium">Satisfied Clients</div>
+            </div>
+            <div className="bg-blue-50 p-8 rounded-2xl">
+              <div className="text-4xl font-bold text-blue-600 mb-2">50+</div>
+              <div className="text-gray-500 text-sm font-medium">IT Experts</div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* IT Consulting Company Section */}
 
       {/* IT Consulting Company Section */}
       <section className="py-24 bg-slate-800 text-white text-center">
@@ -340,14 +236,16 @@ const About = () => {
           <h2 className="text-3xl font-bold text-gray-900 mb-4">파트너사</h2>
           <p className="text-gray-600 mb-12">글로벌 IT 기업들과의 파트너십으로 최고의 솔루션을 제공합니다</p>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 mb-8">
-            {Array.from({ length: 15 }).map((_, i) => (
-              <div key={i} className="aspect-square bg-blue-50 rounded-lg"></div>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-8 items-center justify-items-center">
+            {Array.from({ length: 11 }).map((_, i) => (
+              <div key={i} className="w-full h-24 flex items-center justify-center p-4 grayscale hover:grayscale-0 transition-all duration-300">
+                <img 
+                  src={`/images/logo${i + 1}.png`} 
+                  alt={`Partner ${i + 1}`} 
+                  className="max-w-full max-h-full object-contain"
+                />
+              </div>
             ))}
-            <div className="aspect-square bg-gray-100 rounded-lg flex flex-col items-center justify-center text-gray-400 hover:bg-gray-200 cursor-pointer transition-colors">
-              <Plus className="w-8 h-8 mb-1" />
-              <span className="text-xs">더보기</span>
-            </div>
           </div>
         </div>
       </section>
@@ -357,41 +255,50 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/3">
-              <h2 className="text-2xl font-bold text-gray-500 uppercase tracking-widest">The Header of CORAISE</h2>
+              <h2 className="text-2xl font-bold text-gray-500 uppercase tracking-widest mb-4">The Header of CORAISE</h2>
+              <p className="text-gray-600">
+                코레이즈를 이끄는 리더십을 소개합니다.
+              </p>
             </div>
-            <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-4">
-              <img 
-                src="https://picsum.photos/seed/leader1/600/400?grayscale" 
-                alt="Leadership 1" 
-                className="w-full h-64 object-cover rounded-lg shadow-lg"
-                referrerPolicy="no-referrer"
-              />
-              <img 
-                src="https://picsum.photos/seed/leader2/600/400?grayscale" 
-                alt="Leadership 2" 
-                className="w-full h-64 object-cover rounded-lg shadow-lg"
-                referrerPolicy="no-referrer"
-              />
+            <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="group relative overflow-hidden rounded-lg shadow-lg">
+                <img 
+                  src="/images/ceo1.png" 
+                  alt="CEO 1" 
+                  className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="group relative overflow-hidden rounded-lg shadow-lg">
+                <img 
+                  src="/images/ceo2.png" 
+                  alt="CEO 2" 
+                  className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Gallery */}
-      <section className="py-4 bg-white">
+      {/* Company Gallery */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="col-span-2 row-span-2">
-              <img src="https://picsum.photos/seed/office1/800/800" alt="Office" className="w-full h-full object-cover rounded-lg" referrerPolicy="no-referrer" />
+          <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Our Workplace</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="lg:col-span-2 lg:row-span-2 relative overflow-hidden rounded-xl shadow-md group">
+              <img src="/images/company1.png" alt="Company 1" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
-            <div>
-              <img src="https://picsum.photos/seed/office2/400/400" alt="Office" className="w-full h-full object-cover rounded-lg" referrerPolicy="no-referrer" />
+            <div className="relative overflow-hidden rounded-xl shadow-md group h-64 lg:h-auto">
+              <img src="/images/company2.png" alt="Company 2" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
-            <div>
-              <img src="https://picsum.photos/seed/office3/400/400" alt="Office" className="w-full h-full object-cover rounded-lg" referrerPolicy="no-referrer" />
+            <div className="relative overflow-hidden rounded-xl shadow-md group h-64 lg:h-auto">
+              <img src="/images/company3.png" alt="Company 3" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
-            <div className="col-span-2">
-              <img src="https://picsum.photos/seed/office4/800/400" alt="Office" className="w-full h-full object-cover rounded-lg" referrerPolicy="no-referrer" />
+            <div className="relative overflow-hidden rounded-xl shadow-md group h-64">
+              <img src="/images/company4.png" alt="Company 4" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div className="lg:col-span-2 relative overflow-hidden rounded-xl shadow-md group h-64">
+              <img src="/images/company5.png" alt="Company 5" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
           </div>
         </div>
