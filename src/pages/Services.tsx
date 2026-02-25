@@ -220,6 +220,22 @@ const Services = () => {
           description: "Adobe Creative Cloud, Unity, Autodesk 등 크리에이티브 전문가를 위한 소프트웨어.",
           features: ["Adobe CC 기업용 라이선스", "Unity Pro / Enterprise", "Autodesk AEC/PDM Collection", "폰트 및 이미지 라이선스"],
           image: "https://picsum.photos/800/400?random=21"
+        },
+        { 
+          id: 'gotsales', 
+          name: 'GotSales', 
+          title: "GotSales (CRM & Asset)",
+          description: "영업 기회 관리부터 IT 자산 실물 추적까지, B2B 비즈니스에 최적화된 올인원 솔루션.",
+          features: ["영업 파이프라인 시각화", "견적/계약 자동화", "IT 자산 실물 추적 (QR/Barcode)", "유지보수 계약 관리"],
+          image: "https://picsum.photos/800/400?random=22"
+        },
+        { 
+          id: 'cowork', 
+          name: 'CoWork.Day', 
+          title: "CoWork.Day (Groupware)",
+          description: "메일, 결재, 일정, 근태 관리를 통합한 차세대 스마트 워크플레이스.",
+          features: ["전자결재 (주 52시간 근태 연동)", "프로젝트/태스크 관리", "화상회의 & 메신저", "Google/M365 계정 연동"],
+          image: "https://picsum.photos/800/400?random=23"
         }
       ]
     }

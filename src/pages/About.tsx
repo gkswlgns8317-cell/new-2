@@ -1,33 +1,84 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Plus, MessageCircle, ArrowUp } from 'lucide-react';
-import { motion } from 'motion/react';
+import { ArrowRight, Plus, MessageCircle, ArrowUp, ChevronDown, ChevronUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 
 const About = () => {
+  const [expandedSolution, setExpandedSolution] = useState<number | null>(null);
+
   const solutions = [
     {
+      title: "ID PaC (Identity Package)",
+      subtitle: "SaaS & Cloud 인사 연동 솔루션",
+      desc: "Google Workspace, Microsoft 365 등 다양한 SaaS 계정과 인사 정보를 자동으로 동기화하여 관리 효율을 극대화합니다.",
+      details: [
+        "Google Workspace 계정 자동 생성/삭제/수정",
+        "M365 라이선스 자동 할당 및 회수",
+        "부서/직책 정보 실시간 동기화",
+        "퇴사자 계정 자동 비활성화 및 데이터 이관",
+        "다양한 HR 시스템(e-HR)과 연동 지원"
+      ],
+      process: [
+        { step: "01. 연동 설정", desc: "HR 데이터베이스 및 SaaS(Google/M365) API 연동" },
+        { step: "02. 정책 수립", desc: "부서/직책별 라이선스 할당 및 권한 정책 정의" },
+        { step: "03. 자동화", desc: "입사/퇴사/인사이동 발생 시 계정 라이프사이클 자동 처리" },
+        { step: "04. 모니터링", desc: "동기화 로그 및 라이선스 사용 현황 리포팅" }
+      ],
+      target: "적합 고객: Google Workspace/M365 사용 기업, 입퇴사자가 많은 성장 기업"
+    },
+    {
+      title: "ADPaC (Active Directory Package)",
+      subtitle: "한국형 AD 계정 관리 솔루션",
+      desc: "GS인증 1등급을 획득한 솔루션으로, Active Directory와 인사 시스템을 완벽하게 연동하고 패스워드 관리 기능을 제공합니다.",
+      details: [
+        "SyncManager: 인사 DB와 AD 계정 자동 동기화",
+        "PassChanger: AD 패스워드 변경 웹 포털 제공",
+        "ADManager: 웹 기반의 손쉬운 AD 관리 도구",
+        "Teams Org: Microsoft Teams 조직도 연동 지원"
+      ],
+      process: [
+        { step: "01. 인사 연동", desc: "인사 시스템(DB/Excel)의 조직도 및 사원 정보 수집" },
+        { step: "02. AD 동기화", desc: "수집된 정보를 바탕으로 AD 계정 생성/수정/비활성화" },
+        { step: "03. 포털 제공", desc: "사용자용 패스워드 변경 및 관리자용 웹 콘솔 제공" },
+        { step: "04. 확장 연동", desc: "Exchange, Teams, SSO 등 연계 시스템에 정보 전파" }
+      ],
+      target: "적합 고객: Windows 기반 조직, AD 도입/운영 기업, 보안 감사 대응 필요 기업"
+    },
+    {
       title: "GotSales",
-      desc: "매출 관리: 영업 프로세스 및 자산관리 통합",
-      target: "적합 고객: 영업 조직이 있는 B2B 기업, 하드웨어 자산 추적 필요 기업",
-      link: "#"
+      subtitle: "올인원 영업/자산 관리 CRM",
+      desc: "영업 기회 관리부터 견적, 계약, 그리고 하드웨어 자산 관리까지 하나의 플랫폼에서 통합 관리합니다.",
+      details: [
+        "직관적인 파이프라인 관리 및 영업 현황 대시보드",
+        "견적서/계약서 자동 생성 및 이력 관리",
+        "IT 자산(노트북, 모니터 등) 실물 자산 추적 관리",
+        "유지보수 계약 및 정기 점검 일정 관리"
+      ],
+      process: [
+        { step: "01. 리드 관리", desc: "잠재 고객 발굴 및 영업 기회(Opportunity) 등록" },
+        { step: "02. 영업 활동", desc: "견적 발행, 미팅 로그, 파이프라인 단계별 관리" },
+        { step: "03. 계약/수주", desc: "계약 체결 및 매출 확정, 세금계산서 발행 연동" },
+        { step: "04. 자산/유지보수", desc: "납품된 하드웨어 자산 등록 및 유지보수 계약 관리" }
+      ],
+      target: "적합 고객: B2B 영업 조직, IT 자산 관리가 필요한 기업"
     },
     {
       title: "CoWork.Day",
-      desc: "협업 툴: 그룹웨어 및 협업 도구 통합",
-      target: "적합 고객: 성장하는 조직, 원격/하이브리드 근무 환경",
-      link: "#"
-    },
-    {
-      title: "AD 관리 솔루션 번들",
-      desc: "계정 관리: Active Directory 계정/권한 관리 자동화",
-      target: "적합 고객: Windows 기반 조직, 계정 생명주기 관리 필요 기업",
-      link: "#"
-    },
-    {
-      title: "[추가 솔루션]",
-      desc: "채용 관리: (초기 솔루션 플레이스홀더)",
-      target: "적합 고객: (타겟 고객 프로필)",
-      link: "#"
+      subtitle: "차세대 그룹웨어 (Beta)",
+      desc: "메일, 결재, 일정, 근태 관리를 넘어 진정한 협업을 위한 올인원 워크플레이스를 제공합니다.",
+      details: [
+        "전자결재 및 근태 관리 (주 52시간 대응)",
+        "프로젝트 및 태스크 관리",
+        "사내 메신저 및 화상 회의 통합",
+        "Google Workspace / M365 완벽 연동"
+      ],
+      process: [
+        { step: "01. 워크스페이스 생성", desc: "회사/팀별 워크스페이스 생성 및 구성원 초대" },
+        { step: "02. 업무 도구 통합", desc: "메일, 캘린더, 드라이브 등 기존 업무 도구 연동" },
+        { step: "03. 협업 프로세스", desc: "프로젝트 생성, 태스크 할당, 메신저 소통" },
+        { step: "04. 경영 지원", desc: "전자결재 승인, 근태 관리, 리소스 분석" }
+      ],
+      target: "적합 고객: 스마트워크 환경 도입을 원하는 기업"
     }
   ];
 
@@ -113,16 +164,67 @@ const About = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {solutions.map((sol, idx) => (
-              <div key={idx} className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{sol.title}</h3>
-                <div className="space-y-3 mb-8">
-                  <p className="text-sm text-gray-800 font-medium whitespace-pre-line">{sol.desc}</p>
-                  <p className="text-xs text-gray-500 whitespace-pre-line">{sol.target}</p>
-                </div>
-                <button className="text-xs font-bold text-white bg-slate-600 px-4 py-2 rounded hover:bg-slate-700 transition-colors flex items-center w-fit">
-                  서비스에서 적용 예시 보기 <ArrowRight className="ml-1 w-3 h-3" />
-                </button>
-              </div>
+              <motion.div 
+                key={idx} 
+                layout
+                onClick={() => setExpandedSolution(expandedSolution === idx ? null : idx)}
+                className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all cursor-pointer overflow-hidden"
+              >
+                <motion.div layout className="flex justify-between items-start mb-4">
+                  <div>
+                    <motion.h3 layout className="text-xl font-bold text-gray-900">{sol.title}</motion.h3>
+                    <motion.p layout className="text-sm text-orange-600 font-medium mt-1">{sol.subtitle}</motion.p>
+                  </div>
+                  {expandedSolution === idx ? (
+                    <ChevronUp className="w-5 h-5 text-gray-400" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-gray-400" />
+                  )}
+                </motion.div>
+                
+                <motion.div layout className="space-y-3 mb-4">
+                  <p className="text-sm text-gray-800 font-medium leading-relaxed">{sol.desc}</p>
+                </motion.div>
+
+                <AnimatePresence>
+                  {expandedSolution === idx && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="border-t border-gray-100 pt-4 mt-4"
+                    >
+                      <h4 className="text-sm font-bold text-gray-900 mb-2">주요 기능</h4>
+                      <ul className="space-y-2 mb-6">
+                        {sol.details.map((detail, i) => (
+                          <li key={i} className="text-sm text-gray-600 flex items-start">
+                            <span className="w-1.5 h-1.5 bg-orange-500 rounded-full mr-2 mt-1.5 flex-shrink-0"></span>
+                            {detail}
+                          </li>
+                        ))}
+                      </ul>
+                      
+                      <h4 className="text-sm font-bold text-gray-900 mb-2">프로세스</h4>
+                      <div className="grid grid-cols-1 gap-2 mb-6">
+                        {sol.process.map((step, i) => (
+                          <div key={i} className="bg-gray-50 p-3 rounded border border-gray-100 flex flex-col">
+                            <span className="text-xs font-bold text-orange-600 mb-1">{step.step}</span>
+                            <span className="text-xs text-gray-600">{step.desc}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <p className="text-xs text-gray-500 bg-blue-50 p-3 rounded">{sol.target}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                
+                {expandedSolution !== idx && (
+                  <motion.div layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs text-gray-400 text-center mt-2">
+                    클릭하여 자세히 보기
+                  </motion.div>
+                )}
+              </motion.div>
             ))}
           </div>
         </div>

@@ -1,11 +1,77 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, Search, MessageCircle } from 'lucide-react';
+import { ChevronDown, ChevronUp, Search, MessageCircle, Lock, X, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 
 const QnA = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  
+  // Form state
+  const [newQuestion, setNewQuestion] = useState({
+    title: '',
+    content: '',
+    author: '',
+    password: '',
+    isSecret: true
+  });
+
+  const [activeQuestionId, setActiveQuestionId] = useState<number | null>(null);
+
+  const [questions, setQuestions] = useState([
+    { 
+      id: 1, 
+      status: '답변완료', 
+      title: 'SaaS 통합 관리 솔루션 견적 문의드립니다.', 
+      author: '김**', 
+      date: '2024.03.15', 
+      isSecret: true,
+      content: 'Google Workspace와 Microsoft 365를 함께 사용 중인데, 통합 관리할 수 있는 솔루션 견적을 받고 싶습니다. 사용자 수는 약 150명입니다.',
+      answer: '안녕하세요, 코레이즈입니다. 문의주신 SaaS 통합 관리 솔루션(ID PaC) 견적 관련하여 메일로 상세 제안서를 발송해 드렸습니다. 추가 문의사항이 있으시면 언제든 연락 부탁드립니다.'
+    },
+    { 
+      id: 2, 
+      status: '답변완료', 
+      title: '스타트업 패키지 구성 변경이 가능한가요?', 
+      author: '이**', 
+      date: '2024.03.14', 
+      isSecret: false,
+      content: '스타트업 패키지에서 일부 구성을 제외하거나 다른 솔루션으로 대체가 가능한지 궁금합니다.',
+      answer: '안녕하세요. 스타트업 패키지는 고객사의 니즈에 맞춰 유연하게 구성 변경이 가능합니다. 담당 컨설턴트가 연락드려 상세 상담을 도와드리겠습니다.'
+    },
+    { 
+      id: 3, 
+      status: '대기중', 
+      title: 'ISMS-P 인증 컨설팅 기간 문의', 
+      author: '박**', 
+      date: '2024.03.14', 
+      isSecret: true,
+      content: 'ISMS-P 인증 획득을 준비 중인데, 컨설팅부터 인증 획득까지 대략적인 기간이 얼마나 소요되는지 알고 싶습니다.',
+      answer: null
+    },
+    { 
+      id: 4, 
+      status: '답변완료', 
+      title: '기존 AD 서버 마이그레이션 지원 여부', 
+      author: '최**', 
+      date: '2024.03.12', 
+      isSecret: false,
+      content: '현재 사내에 구축된 노후화된 AD 서버를 클라우드 또는 신규 서버로 마이그레이션 하려고 합니다. 기술 지원이 가능한가요?',
+      answer: '네, 가능합니다. 기존 AD 환경 분석 후 마이그레이션 시나리오를 설계하여 데이터 손실 없이 안전하게 이전해 드립니다.'
+    },
+    { 
+      id: 5, 
+      status: '답변완료', 
+      title: '네트워크 유지보수 SLA 기준이 궁금합니다.', 
+      author: '정**', 
+      date: '2024.03.10', 
+      isSecret: true,
+      content: '네트워크 유지보수 계약 시 제공되는 SLA(서비스 수준 협약)의 구체적인 장애 대응 시간과 보상 기준이 궁금합니다.',
+      answer: '유지보수 등급(Standard, Premium, Enterprise)에 따라 SLA 기준이 상이합니다. 일반적으로 장애 접수 후 2시간 이내 대응, 4시간 이내 복구를 목표로 합니다.'
+    },
+  ]);
 
   const faqs = [
     {
@@ -39,6 +105,53 @@ const QnA = () => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
+  const toggleQuestion = (id: number, isSecret: boolean) => {
+    if (isSecret && !isAdmin) {
+      alert("비공개 글입니다.");
+      return;
+    }
+    setActiveQuestionId(activeQuestionId === id ? null : id);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setNewQuestion(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewQuestion(prev => ({ ...prev, isSecret: e.target.checked }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newQuestion.title || !newQuestion.author || !newQuestion.password) {
+      alert('필수 항목을 입력해주세요.');
+      return;
+    }
+
+    const question = {
+      id: questions.length + 1,
+      status: '대기중',
+      title: newQuestion.title,
+      author: newQuestion.author.substring(0, 1) + '**',
+      date: new Date().toLocaleDateString('ko-KR').replace(/\.$/, ''),
+      isSecret: newQuestion.isSecret,
+      content: newQuestion.content,
+      answer: null
+    };
+
+    setQuestions([question, ...questions]);
+    setNewQuestion({
+      title: '',
+      content: '',
+      author: '',
+      password: '',
+      isSecret: true
+    });
+    setIsModalOpen(false);
+    alert('질문이 등록되었습니다.');
+  };
+
   return (
     <div className="min-h-screen font-sans">
       {/* Hero Section */}
@@ -64,9 +177,18 @@ const QnA = () => {
 
       {/* FAQ Section */}
       <div className="max-w-4xl mx-auto px-4 py-20">
-        <h2 className="text-2xl font-bold text-gray-900 mb-8">FAQ</h2>
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-2xl font-bold text-gray-900">FAQ</h2>
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2 rounded-md font-bold text-sm transition-colors flex items-center gap-2 shadow-sm"
+          >
+            <MessageCircle className="w-4 h-4" />
+            질문하기
+          </button>
+        </div>
         
-        <div className="space-y-0 border-t border-gray-200">
+        <div className="space-y-0 border-t border-gray-200 mb-16">
           {filteredFaqs.length > 0 ? (
             filteredFaqs.map((faq, index) => (
               <div key={index} className="border-b border-gray-200">
@@ -75,6 +197,7 @@ const QnA = () => {
                   onClick={() => toggleAccordion(index)}
                 >
                   <span className="text-lg font-medium text-gray-900 group-hover:text-orange-600 transition-colors">
+                    <span className="text-orange-500 font-bold mr-2">Q.</span>
                     {faq.question}
                   </span>
                   {activeIndex === index ? (
@@ -93,6 +216,7 @@ const QnA = () => {
                       className="overflow-hidden"
                     >
                       <div className="pb-6 text-gray-600 leading-relaxed bg-gray-50 p-6 rounded-lg mb-6">
+                        <span className="text-blue-600 font-bold mr-2">A.</span>
                         {faq.answer}
                       </div>
                     </motion.div>
@@ -107,12 +231,215 @@ const QnA = () => {
           )}
         </div>
 
-        <div className="mt-12 text-center">
-          <button className="bg-[#D96B43] text-white px-8 py-3 rounded-md font-bold hover:bg-[#C55A32] transition-colors text-sm">
-            자주 묻는 질문 더 보기
-          </button>
+        {/* Answer List Section */}
+        <div className="mb-12">
+          <div className="flex justify-between items-end mb-6">
+            <h2 className="text-2xl font-bold text-gray-900">최근 답변 목록</h2>
+            <button 
+              onClick={() => setIsAdmin(!isAdmin)}
+              className={`text-xs px-3 py-1 rounded border transition-colors ${isAdmin ? 'bg-gray-800 text-white border-gray-800' : 'text-gray-400 border-gray-200 hover:border-gray-400'}`}
+            >
+              {isAdmin ? '관리자 모드 ON' : '관리자 모드 OFF'}
+            </button>
+          </div>
+          
+          <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+            <div className="grid grid-cols-12 bg-gray-50 py-3 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+              <div className="col-span-2 md:col-span-1 text-center">상태</div>
+              <div className="col-span-6 md:col-span-7">제목</div>
+              <div className="col-span-2 text-center">작성자</div>
+              <div className="col-span-2 text-center">날짜</div>
+            </div>
+            <div className="divide-y divide-gray-100">
+              {questions.map((item) => (
+                <div key={item.id} className="group">
+                  <div 
+                    onClick={() => toggleQuestion(item.id, item.isSecret)}
+                    className="grid grid-cols-12 py-4 px-6 text-sm hover:bg-gray-50 transition-colors cursor-pointer"
+                  >
+                    <div className="col-span-2 md:col-span-1 text-center flex justify-center items-center">
+                      <span className={`px-2 py-1 rounded text-[10px] font-bold ${
+                        item.status === '답변완료' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-500'
+                      }`}>
+                        {item.status}
+                      </span>
+                    </div>
+                    <div className="col-span-6 md:col-span-7 text-gray-900 font-medium truncate pr-4 flex items-center">
+                      {item.isSecret && !isAdmin ? (
+                        <span className="flex items-center text-gray-400">
+                          <Lock className="w-3 h-3 mr-2" />
+                          비공개 글입니다.
+                        </span>
+                      ) : (
+                        <>
+                          {item.isSecret && <Lock className="w-3 h-3 mr-2 text-orange-500" />}
+                          {item.title}
+                        </>
+                      )}
+                    </div>
+                    <div className="col-span-2 text-center text-gray-500 flex items-center justify-center">
+                      {item.author}
+                    </div>
+                    <div className="col-span-2 text-center text-gray-400 text-xs flex items-center justify-center">
+                      {item.date}
+                    </div>
+                  </div>
+                  
+                  <AnimatePresence>
+                    {activeQuestionId === item.id && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden bg-gray-50"
+                      >
+                        <div className="px-6 py-6 border-t border-gray-100">
+                          <div className="mb-6">
+                            <h4 className="font-bold text-gray-900 mb-2 flex items-center">
+                              <span className="text-orange-600 mr-2">Q.</span> 질문 내용
+                            </h4>
+                            <p className="text-gray-700 whitespace-pre-wrap leading-relaxed pl-6">
+                              {item.content || "내용이 없습니다."}
+                            </p>
+                          </div>
+                          
+                          {item.answer && (
+                            <div className="bg-white p-4 rounded-lg border border-gray-200">
+                              <h4 className="font-bold text-gray-900 mb-2 flex items-center">
+                                <span className="text-blue-600 mr-2">A.</span> 답변
+                              </h4>
+                              <p className="text-gray-700 whitespace-pre-wrap leading-relaxed pl-6">
+                                {item.answer}
+                              </p>
+                            </div>
+                          )}
+                          
+                          {!item.answer && isAdmin && (
+                             <div className="mt-4 text-right">
+                               <button className="text-xs bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700 transition-colors">
+                                 답변 작성하기
+                               </button>
+                             </div>
+                          )}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-6 text-center">
+            <button className="text-gray-500 hover:text-gray-900 text-sm font-medium transition-colors">
+              더 많은 질문 보기
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Question Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 z-50 backdrop-blur-sm"
+              onClick={() => setIsModalOpen(false)}
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
+            >
+              <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden pointer-events-auto">
+                <div className="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                  <h3 className="font-bold text-lg text-gray-900">문의하기</h3>
+                  <button onClick={() => setIsModalOpen(false)} className="text-gray-400 hover:text-gray-600">
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+                
+                <form onSubmit={handleSubmit} className="p-6 space-y-4">
+                  <div>
+                    <label className="block text-sm font-bold text-gray-700 mb-1">제목 <span className="text-red-500">*</span></label>
+                    <input 
+                      type="text" 
+                      name="title"
+                      value={newQuestion.title}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      placeholder="문의 제목을 입력해주세요"
+                    />
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-bold text-gray-700 mb-1">작성자 <span className="text-red-500">*</span></label>
+                      <input 
+                        type="text" 
+                        name="author"
+                        value={newQuestion.author}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        placeholder="이름"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-bold text-gray-700 mb-1">비밀번호 <span className="text-red-500">*</span></label>
+                      <input 
+                        type="password" 
+                        name="password"
+                        value={newQuestion.password}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        placeholder="비밀번호"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-bold text-gray-700 mb-1">내용</label>
+                    <textarea 
+                      name="content"
+                      value={newQuestion.content}
+                      onChange={handleInputChange}
+                      rows={5}
+                      className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none"
+                      placeholder="문의하실 내용을 자세히 적어주세요."
+                    />
+                  </div>
+
+                  <div className="flex items-center">
+                    <input 
+                      type="checkbox" 
+                      id="isSecret"
+                      name="isSecret"
+                      checked={newQuestion.isSecret}
+                      onChange={handleCheckboxChange}
+                      className="w-4 h-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500"
+                    />
+                    <label htmlFor="isSecret" className="ml-2 text-sm text-gray-600 flex items-center">
+                      <Lock className="w-3 h-3 mr-1" /> 비밀글로 작성 (관리자만 볼 수 있습니다)
+                    </label>
+                  </div>
+
+                  <div className="pt-4">
+                    <button 
+                      type="submit"
+                      className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl transition-colors shadow-md"
+                    >
+                      문의 등록하기
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Bottom CTA Section */}
       <div className="bg-gradient-to-b from-[#5E6B88] to-[#4A5568] py-24 px-4 text-center text-white relative overflow-hidden">
