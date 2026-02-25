@@ -175,7 +175,7 @@ const Cases = () => {
       quote: "\"SMB 비즈니스의 핵심, 채널톡\"",
       result: "빠른 네트워크 지원으로 업무 효율 극대화",
       services: ["Network", "Helpdesk", "SaaS", "Startup IT", "Global Expansion"],
-      logoImage: "/images/othercompany7.png",
+      logoImage: "/images/othercompany8.png",
       blogUrl: "https://blog.naver.com/coraise/223805123938"
     },
     {
@@ -185,7 +185,7 @@ const Cases = () => {
       quote: "\"끊김없는 무선 구축, 아이소이\"",
       result: "사무실 이전 및 물류 센터 네트워크 최적화",
       services: ["Wireless", "Network", "Logistics IT", "E-commerce Infra", "Security"],
-      logoImage: "/images/othercompany8.png",
+      logoImage: "/images/othercompany9.png",
       blogUrl: "https://blog.naver.com/coraise/223777958324"
     },
     {
@@ -195,7 +195,7 @@ const Cases = () => {
       quote: "\"글로벌 K뷰티, 올리브인터내셔널\"",
       result: "ERP 구축 및 IT 인프라 통합 관리",
       services: ["ERP", "Network", "NAS", "Global IT", "E-commerce"],
-      logoImage: "/images/othercompany9.png",
+      logoImage: "/images/othercompany7.png",
       blogUrl: "https://blog.naver.com/coraise/223736784716"
     },
     {
