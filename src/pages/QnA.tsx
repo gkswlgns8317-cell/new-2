@@ -18,59 +18,12 @@ const QnA = () => {
     isSecret: true
   });
 
-  const [activeQuestionId, setActiveQuestionId] = useState<number | null>(null);
-
   const [questions, setQuestions] = useState([
-    { 
-      id: 1, 
-      status: '답변완료', 
-      title: 'SaaS 통합 관리 솔루션 견적 문의드립니다.', 
-      author: '김**', 
-      date: '2024.03.15', 
-      isSecret: true,
-      content: 'Google Workspace와 Microsoft 365를 함께 사용 중인데, 통합 관리할 수 있는 솔루션 견적을 받고 싶습니다. 사용자 수는 약 150명입니다.',
-      answer: '안녕하세요, 코레이즈입니다. 문의주신 SaaS 통합 관리 솔루션(ID PaC) 견적 관련하여 메일로 상세 제안서를 발송해 드렸습니다. 추가 문의사항이 있으시면 언제든 연락 부탁드립니다.'
-    },
-    { 
-      id: 2, 
-      status: '답변완료', 
-      title: '스타트업 패키지 구성 변경이 가능한가요?', 
-      author: '이**', 
-      date: '2024.03.14', 
-      isSecret: false,
-      content: '스타트업 패키지에서 일부 구성을 제외하거나 다른 솔루션으로 대체가 가능한지 궁금합니다.',
-      answer: '안녕하세요. 스타트업 패키지는 고객사의 니즈에 맞춰 유연하게 구성 변경이 가능합니다. 담당 컨설턴트가 연락드려 상세 상담을 도와드리겠습니다.'
-    },
-    { 
-      id: 3, 
-      status: '대기중', 
-      title: 'ISMS-P 인증 컨설팅 기간 문의', 
-      author: '박**', 
-      date: '2024.03.14', 
-      isSecret: true,
-      content: 'ISMS-P 인증 획득을 준비 중인데, 컨설팅부터 인증 획득까지 대략적인 기간이 얼마나 소요되는지 알고 싶습니다.',
-      answer: null
-    },
-    { 
-      id: 4, 
-      status: '답변완료', 
-      title: '기존 AD 서버 마이그레이션 지원 여부', 
-      author: '최**', 
-      date: '2024.03.12', 
-      isSecret: false,
-      content: '현재 사내에 구축된 노후화된 AD 서버를 클라우드 또는 신규 서버로 마이그레이션 하려고 합니다. 기술 지원이 가능한가요?',
-      answer: '네, 가능합니다. 기존 AD 환경 분석 후 마이그레이션 시나리오를 설계하여 데이터 손실 없이 안전하게 이전해 드립니다.'
-    },
-    { 
-      id: 5, 
-      status: '답변완료', 
-      title: '네트워크 유지보수 SLA 기준이 궁금합니다.', 
-      author: '정**', 
-      date: '2024.03.10', 
-      isSecret: true,
-      content: '네트워크 유지보수 계약 시 제공되는 SLA(서비스 수준 협약)의 구체적인 장애 대응 시간과 보상 기준이 궁금합니다.',
-      answer: '유지보수 등급(Standard, Premium, Enterprise)에 따라 SLA 기준이 상이합니다. 일반적으로 장애 접수 후 2시간 이내 대응, 4시간 이내 복구를 목표로 합니다.'
-    },
+    { id: 1, status: '답변완료', title: 'SaaS 통합 관리 솔루션 견적 문의드립니다.', author: '김**', date: '2024.03.15', isSecret: true },
+    { id: 2, status: '답변완료', title: '스타트업 패키지 구성 변경이 가능한가요?', author: '이**', date: '2024.03.14', isSecret: false },
+    { id: 3, status: '대기중', title: 'ISMS-P 인증 컨설팅 기간 문의', author: '박**', date: '2024.03.14', isSecret: true },
+    { id: 4, status: '답변완료', title: '기존 AD 서버 마이그레이션 지원 여부', author: '최**', date: '2024.03.12', isSecret: false },
+    { id: 5, status: '답변완료', title: '네트워크 유지보수 SLA 기준이 궁금합니다.', author: '정**', date: '2024.03.10', isSecret: true },
   ]);
 
   const faqs = [
@@ -105,14 +58,6 @@ const QnA = () => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  const toggleQuestion = (id: number, isSecret: boolean) => {
-    if (isSecret && !isAdmin) {
-      alert("비공개 글입니다.");
-      return;
-    }
-    setActiveQuestionId(activeQuestionId === id ? null : id);
-  };
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setNewQuestion(prev => ({ ...prev, [name]: value }));
@@ -134,10 +79,8 @@ const QnA = () => {
       status: '대기중',
       title: newQuestion.title,
       author: newQuestion.author.substring(0, 1) + '**',
-      date: new Date().toLocaleDateString('ko-KR').replace(/\.$/, ''),
-      isSecret: newQuestion.isSecret,
-      content: newQuestion.content,
-      answer: null
+      date: new Date().toLocaleDateString('ko-KR').replace(/\.$/, ''), // YYYY. MM. DD format
+      isSecret: newQuestion.isSecret
     };
 
     setQuestions([question, ...questions]);
@@ -252,79 +195,33 @@ const QnA = () => {
             </div>
             <div className="divide-y divide-gray-100">
               {questions.map((item) => (
-                <div key={item.id} className="group">
-                  <div 
-                    onClick={() => toggleQuestion(item.id, item.isSecret)}
-                    className="grid grid-cols-12 py-4 px-6 text-sm hover:bg-gray-50 transition-colors cursor-pointer"
-                  >
-                    <div className="col-span-2 md:col-span-1 text-center flex justify-center items-center">
-                      <span className={`px-2 py-1 rounded text-[10px] font-bold ${
-                        item.status === '답변완료' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-500'
-                      }`}>
-                        {item.status}
-                      </span>
-                    </div>
-                    <div className="col-span-6 md:col-span-7 text-gray-900 font-medium truncate pr-4 flex items-center">
-                      {item.isSecret && !isAdmin ? (
-                        <span className="flex items-center text-gray-400">
-                          <Lock className="w-3 h-3 mr-2" />
-                          비공개 글입니다.
-                        </span>
-                      ) : (
-                        <>
-                          {item.isSecret && <Lock className="w-3 h-3 mr-2 text-orange-500" />}
-                          {item.title}
-                        </>
-                      )}
-                    </div>
-                    <div className="col-span-2 text-center text-gray-500 flex items-center justify-center">
-                      {item.author}
-                    </div>
-                    <div className="col-span-2 text-center text-gray-400 text-xs flex items-center justify-center">
-                      {item.date}
-                    </div>
+                <div key={item.id} className="grid grid-cols-12 py-4 px-6 text-sm hover:bg-gray-50 transition-colors cursor-pointer group">
+                  <div className="col-span-2 md:col-span-1 text-center flex justify-center items-center">
+                    <span className={`px-2 py-1 rounded text-[10px] font-bold ${
+                      item.status === '답변완료' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-500'
+                    }`}>
+                      {item.status}
+                    </span>
                   </div>
-                  
-                  <AnimatePresence>
-                    {activeQuestionId === item.id && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        className="overflow-hidden bg-gray-50"
-                      >
-                        <div className="px-6 py-6 border-t border-gray-100">
-                          <div className="mb-6">
-                            <h4 className="font-bold text-gray-900 mb-2 flex items-center">
-                              <span className="text-orange-600 mr-2">Q.</span> 질문 내용
-                            </h4>
-                            <p className="text-gray-700 whitespace-pre-wrap leading-relaxed pl-6">
-                              {item.content || "내용이 없습니다."}
-                            </p>
-                          </div>
-                          
-                          {item.answer && (
-                            <div className="bg-white p-4 rounded-lg border border-gray-200">
-                              <h4 className="font-bold text-gray-900 mb-2 flex items-center">
-                                <span className="text-blue-600 mr-2">A.</span> 답변
-                              </h4>
-                              <p className="text-gray-700 whitespace-pre-wrap leading-relaxed pl-6">
-                                {item.answer}
-                              </p>
-                            </div>
-                          )}
-                          
-                          {!item.answer && isAdmin && (
-                             <div className="mt-4 text-right">
-                               <button className="text-xs bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700 transition-colors">
-                                 답변 작성하기
-                               </button>
-                             </div>
-                          )}
-                        </div>
-                      </motion.div>
+                  <div className="col-span-6 md:col-span-7 text-gray-900 font-medium truncate pr-4 flex items-center">
+                    {item.isSecret && !isAdmin ? (
+                      <span className="flex items-center text-gray-400">
+                        <Lock className="w-3 h-3 mr-2" />
+                        비공개 글입니다.
+                      </span>
+                    ) : (
+                      <>
+                        {item.isSecret && <Lock className="w-3 h-3 mr-2 text-orange-500" />}
+                        {item.title}
+                      </>
                     )}
-                  </AnimatePresence>
+                  </div>
+                  <div className="col-span-2 text-center text-gray-500 flex items-center justify-center">
+                    {item.author}
+                  </div>
+                  <div className="col-span-2 text-center text-gray-400 text-xs flex items-center justify-center">
+                    {item.date}
+                  </div>
                 </div>
               ))}
             </div>
