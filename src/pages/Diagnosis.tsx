@@ -12,6 +12,10 @@ const Diagnosis = () => {
   const [showComplete, setShowComplete] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const totalQuestions = 6;
 
   const questions = [
