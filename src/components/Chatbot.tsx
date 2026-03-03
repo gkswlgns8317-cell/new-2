@@ -145,7 +145,7 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="fixed bottom-8 right-8 z-50 flex flex-col items-end space-y-4">
+    <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 flex flex-col items-end space-y-4">
       {/* Floating Buttons */}
       {!isOpen && (
         <div className="flex flex-col items-center space-y-3 relative">
@@ -189,7 +189,7 @@ const Chatbot = () => {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="bg-white w-[380px] h-[600px] rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 font-sans"
+            className="bg-white w-[90vw] sm:w-[380px] h-[80vh] sm:h-[600px] rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 font-sans"
           >
             {/* Header */}
             <div className="bg-gray-100 px-5 py-4 flex justify-between items-center border-b border-gray-200">

@@ -195,11 +195,11 @@ const Diagnosis = () => {
 
   if (showConsultation) {
     return (
-      <div className="min-h-screen bg-gray-50 py-20 px-4 flex items-center justify-center font-sans">
+      <div className="min-h-screen bg-gray-50 py-10 px-4 flex justify-center items-start sm:items-center font-sans overflow-y-auto">
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="max-w-lg w-full bg-white rounded-2xl shadow-xl overflow-hidden"
+          className="max-w-lg w-full bg-white rounded-2xl shadow-xl overflow-hidden my-auto"
         >
           <div className="p-8 border-b border-gray-100 text-center">
             <h2 className="text-2xl font-bold text-gray-900">상담 신청</h2>

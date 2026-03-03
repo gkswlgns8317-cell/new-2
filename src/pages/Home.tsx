@@ -224,18 +224,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Floating Buttons */}
-      <div className="fixed bottom-8 right-8 flex flex-col gap-4 z-50">
-        <Link to="/qna" className="bg-yellow-400 hover:bg-yellow-500 text-black p-3 rounded-full shadow-lg transition-transform hover:scale-110 flex items-center justify-center">
-          <MessageCircle className="w-6 h-6" />
-        </Link>
-        <button 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full shadow-lg transition-transform hover:scale-110 flex items-center justify-center"
-        >
-          <ArrowUp className="w-6 h-6" />
-        </button>
-      </div>
+
     </div>
   );
 };
