@@ -13,10 +13,12 @@ import Services from './pages/Services';
 import QnA from './pages/QnA';
 import Diagnosis from './pages/Diagnosis';
 import Cases from './pages/Cases';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
