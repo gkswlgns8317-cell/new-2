@@ -48,13 +48,14 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-6">Services</h3>
+            <h3 className="text-lg font-semibold mb-6">Solutions</h3>
             <ul className="space-y-4 text-gray-400 text-sm">
-              <li><Link to="/services/startup" className="hover:text-orange-400 transition-colors">Startup</Link></li>
-              <li><Link to="/services/sme" className="hover:text-orange-400 transition-colors">SME</Link></li>
-              <li><Link to="/services/education" className="hover:text-orange-400 transition-colors">Education</Link></li>
-              <li><Link to="/services/ecommerce" className="hover:text-orange-400 transition-colors">E-commerce</Link></li>
-              <li><Link to="/services/enterprise" className="hover:text-orange-400 transition-colors">Enterprise</Link></li>
+              <li><Link to="/cases" className="hover:text-orange-400 transition-colors">Customer Cases</Link></li>
+              <li><Link to="/solutions/startup" className="hover:text-orange-400 transition-colors">Startup</Link></li>
+              <li><Link to="/solutions/sme" className="hover:text-orange-400 transition-colors">SME</Link></li>
+              <li><Link to="/solutions/education" className="hover:text-orange-400 transition-colors">Education</Link></li>
+              <li><Link to="/solutions/ecommerce" className="hover:text-orange-400 transition-colors">E-commerce</Link></li>
+              <li><Link to="/solutions/enterprise" className="hover:text-orange-400 transition-colors">Enterprise</Link></li>
             </ul>
           </div>
 
@@ -62,9 +63,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-6">Company</h3>
             <ul className="space-y-4 text-gray-400 text-sm">
               <li><Link to="/about" className="hover:text-orange-400 transition-colors">About Us</Link></li>
-              <li><Link to="/careers" className="hover:text-orange-400 transition-colors">Careers</Link></li>
-              <li><Link to="/partners" className="hover:text-orange-400 transition-colors">Partners</Link></li>
-              <li><Link to="/contact" className="hover:text-orange-400 transition-colors">Contact</Link></li>
+              <li><Link to="/qna" className="hover:text-orange-400 transition-colors">Q&A</Link></li>
             </ul>
           </div>
 
