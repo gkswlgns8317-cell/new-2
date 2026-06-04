@@ -272,10 +272,16 @@ export const Footer: React.FC<{ onNavigate: (p: string, t?: string) => void }> =
         <div className="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-[11px] text-gray-500 font-semibold">
           <div className="space-y-1.5">
             <p className="text-gray-400">© 2026 Hugnics Inc. All rights reserved.</p>
-            <p>{locale === 'en' ? 'Startup Promotion Center, Dongguk Univ, Seoul, Korea' : '서울특별시 중구 필동로 1길 30, 동국대학교 창업진흥센터'}</p>
+            <p>
+              {locale === 'en' 
+                ? 'Room 227, Industry-Academic Cooperation Bldg, 32 Dongguk-ro, Ilsandong-gu, Goyang-si, Gyeonggi-do, Korea' 
+                : '경기도 고양시 일산동구 동국로 32, 동국대학교 산학협력관 227호'}
+            </p>
           </div>
           <div className="text-left md:text-right space-y-1.5">
-            <p>{locale === 'en' ? 'CEO: Jihun Han' : '대표이사: 한지훈'} | {locale === 'en' ? 'Biz No: 123-45-67890' : '사업자등록번호: 123-45-67890'}</p>
+            <p>
+              {locale === 'en' ? 'CEO: Jihun Han' : '대표이사: 한지훈'} | Tel: 010-9132-8347 | {locale === 'en' ? 'Biz No: 123-45-67890' : '사업자등록번호: 123-45-67890'}
+            </p>
             <p className="text-primary font-bold">Email: contact@hugnics.com</p>
           </div>
         </div>

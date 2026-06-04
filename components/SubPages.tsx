@@ -207,12 +207,20 @@ export const ProductPage: React.FC<{ activeTab: string; onTabChange: (t: string)
       <div className="animate-fade-in-up">
         {activeTab === 'hardware' && (
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
-            {/* Left Col: Device Display Frame */}
-            <div className="w-full lg:w-1/2 flex justify-center">
-              <div className="border border-gray-100 p-8 bg-white shadow-xl rounded-2xl flex justify-center items-center w-full max-w-md lg:max-w-none">
-                <div className="relative w-64 h-64 bg-gray-50 rounded-xl flex flex-col items-center justify-center border border-dashed border-gray-200">
-                  <Wifi className="w-20 h-20 text-primary/70 mb-4 animate-pulse" strokeWidth={1.5} />
-                  <span className="text-[10px] font-bold text-gray-400 tracking-[0.25em] uppercase">HUGNICS CARE SENSOR</span>
+            {/* Left Col: Device Display Frame (Plug and Arm Types) */}
+            <div className="w-full lg:w-1/2 flex flex-col gap-6">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="border border-gray-100 p-4 bg-white shadow-sm rounded-xl">
+                  <div className="overflow-hidden rounded-lg aspect-square bg-gray-50 flex items-center justify-center">
+                    <img src="/hardware-plug.png" className="w-full h-full object-contain hover:scale-105 transition-transform duration-500" alt="Hugnics Care Sensor Plug Type" />
+                  </div>
+                  <div className="text-center mt-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Plug Type</div>
+                </div>
+                <div className="border border-gray-100 p-4 bg-white shadow-sm rounded-xl">
+                  <div className="overflow-hidden rounded-lg aspect-square bg-gray-50 flex items-center justify-center">
+                    <img src="/hardware-arm.png" className="w-full h-full object-contain hover:scale-105 transition-transform duration-500" alt="Hugnics Care Sensor Arm Type" />
+                  </div>
+                  <div className="text-center mt-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Adjustable Arm Type</div>
                 </div>
               </div>
             </div>
@@ -224,14 +232,26 @@ export const ProductPage: React.FC<{ activeTab: string; onTabChange: (t: string)
               
               <div className="border-t border-gray-100 divide-y divide-gray-100 mt-6">
                 {[
-                  { label: locale === 'en' ? 'Installation' : '설치 방식', val: t.common.development },
-                  { label: locale === 'en' ? 'Connectivity' : '통신 규격', val: t.common.development },
-                  { label: locale === 'en' ? 'Power' : '전원 공급', val: t.common.development },
-                  { label: locale === 'en' ? 'Waterproof' : '방수 등급', val: t.common.development }
+                  { 
+                    label: locale === 'en' ? 'Installation' : '설치 방식', 
+                    val: locale === 'en' ? 'Direct 220V wall plug' : '220V 콘센트 직접 플러그인' 
+                  },
+                  { 
+                    label: locale === 'en' ? 'Connectivity' : '통신 규격', 
+                    val: locale === 'en' ? 'Under selection' : '개발 및 선정 중' 
+                  },
+                  { 
+                    label: locale === 'en' ? 'Power' : '전원 공급', 
+                    val: locale === 'en' ? '220V AC (Compatible with 5V DC adapter)' : '220V AC (5V DC 어댑터 지원 예정)' 
+                  },
+                  { 
+                    label: locale === 'en' ? 'Waterproof' : '방수 등급', 
+                    val: locale === 'en' ? 'IP66 (In development)' : 'IP66 (개발 진행 중)' 
+                  }
                 ].map((item, i) => (
                   <div key={i} className="py-4 flex justify-between items-center text-sm font-medium">
                     <span className="text-gray-400 font-bold uppercase tracking-wider text-xs">{item.label}</span>
-                    <span className="text-secondary font-bold">{item.val}</span>
+                    <span className="text-secondary font-bold text-right">{item.val}</span>
                   </div>
                 ))}
               </div>
