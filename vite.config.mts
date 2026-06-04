@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => {
       },
       build: {
         rollupOptions: {
-          external: ['react', 'react-dom', 'lucide-react'],
+          external: ['lucide-react'],
         }
       }
     };
