@@ -141,7 +141,7 @@ export const Hero: React.FC<{ onOpenContact: () => void; onNavigate: (p: string,
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-secondary leading-[1.15] mb-6 tracking-tight whitespace-pre-line">
             {t.hero.title.split('\n').map((line, i) => (
               <React.Fragment key={i}>
-                {i === 1 ? <span className="text-primary italic font-serif font-semibold">{line}</span> : line}
+                {i === 1 ? <span className="text-primary italic font-extrabold">{line}</span> : line}
                 <br />
               </React.Fragment>
             ))}
@@ -280,7 +280,7 @@ export const Footer: React.FC<{ onNavigate: (p: string, t?: string) => void }> =
           </div>
           <div className="text-left md:text-right space-y-1.5">
             <p>
-              {locale === 'en' ? 'CEO: Jihun Han' : '대표이사: 한지훈'} | Tel: 010-9132-8347 | {locale === 'en' ? 'Biz No: 123-45-67890' : '사업자등록번호: 123-45-67890'}
+              {locale === 'en' ? 'CEO: Jihun Han' : '대표이사: 한지훈'} | Tel: 010-9132-8347 | {locale === 'en' ? 'Biz No: To be registered' : '사업자등록번호: 등록 예정'}
             </p>
             <p className="text-primary font-bold">Email: contact@hugnics.com</p>
           </div>

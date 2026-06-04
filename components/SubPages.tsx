@@ -13,7 +13,7 @@ export const SolutionPage: React.FC<{ activeTab: string; onTabChange: (t: string
       </div>
       
       {/* Clean Tab Bar */}
-      <div className="flex gap-4 md:gap-8 border-b border-gray-100 mb-12">
+      <div className="flex gap-4 md:gap-8 border-b border-gray-100 mb-12 overflow-x-auto whitespace-nowrap [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {[
           { id: 'radar', label: 'Radar', icon: <Radio size={14}/> },
           { id: 'ai', label: 'Edge AI', icon: <Cpu size={14}/> },
@@ -192,7 +192,7 @@ export const ProductPage: React.FC<{ activeTab: string; onTabChange: (t: string)
       </div>
       
       {/* Tab bar */}
-      <div className="flex gap-4 md:gap-8 border-b border-gray-100 mb-12">
+      <div className="flex gap-4 md:gap-8 border-b border-gray-100 mb-12 overflow-x-auto whitespace-nowrap [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {['hardware', 'software'].map(id => (
           <button 
             key={id} 
@@ -314,7 +314,7 @@ export const CompanyPage: React.FC<{ activeTab: string; onTabChange: (t: string)
       </div>
       
       {/* Clean Tab bar */}
-      <div className="flex gap-4 md:gap-8 border-b border-gray-100 mb-12">
+      <div className="flex gap-4 md:gap-8 border-b border-gray-100 mb-12 overflow-x-auto whitespace-nowrap [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {['team', 'vision', 'careers'].map(id => (
           <button 
             key={id} 
@@ -412,8 +412,8 @@ export const SupportPage: React.FC<{ activeTab: string; onTabChange: (t: string)
     {
       q: locale === 'en' ? "Is it difficult to install?" : "설치가 어렵나요?",
       a: locale === 'en'
-        ? "It is simple. Just connect it to a power source (USB-C) and attach it to the ceiling or upper wall. We provide a step-by-step guide through our app."
-        : "매우 간단합니다. 전원(USB-C)만 연결하고 천장이나 벽면 상단에 부착하면 끝입니다. 전용 앱을 통해 단계별 설치 가이드를 제공해 드립니다."
+        ? "It is simple. Just plug it into any power outlet. We provide a step-by-step guide through our app."
+        : "매우 간단합니다. 전원 연결은 콘센트에 꽂기만 하면 됩니다. 전용 앱을 통해 단계별 설치 가이드를 제공해 드립니다."
     },
     {
       q: locale === 'en' ? "Can multiple guardians receive alerts?" : "보호자 여러 명이 알림을 받을 수 있나요?",
@@ -439,11 +439,11 @@ export const SupportPage: React.FC<{ activeTab: string; onTabChange: (t: string)
           <p className="text-primary text-xs font-bold flex items-center gap-1.5 uppercase tracking-wider">{t.common.inquiry} <ArrowRight size={14}/></p>
         </div>
         
-        <div className="p-10 bg-gray-50/50 border border-gray-100 rounded-xl group cursor-pointer hover:bg-gray-100/50 transition-all">
-          <FileText className="text-secondary mb-6 transition-transform group-hover:scale-105" size={36}/>
+        <div className="p-10 bg-gray-50/50 border border-gray-100 rounded-xl group transition-all">
+          <FileText className="text-secondary mb-6" size={36}/>
           <h3 className="text-xl font-bold text-secondary mb-3 tracking-tight">{locale === 'en' ? 'User Manual' : '사용자 매뉴얼'}</h3>
-          <p className="text-gray-500 text-xs md:text-sm font-semibold mb-6 leading-relaxed">{locale === 'en' ? 'Check the detailed setup guide for HUG-S100.' : 'HUG-S100 설치 및 앱 연동 방법이 상세히 설명되어 있습니다.'}</p>
-          <p className="text-secondary text-xs font-bold flex items-center gap-1.5 uppercase tracking-wider">Download (PDF) <Download size={14}/></p>
+          <p className="text-gray-500 text-xs md:text-sm font-semibold mb-6 leading-relaxed">{locale === 'en' ? 'Detailed setup guide is currently in preparation.' : 'HUG-S100 설치 및 앱 연동 매뉴얼이 준비 중입니다.'}</p>
+          <p className="text-gray-400 text-xs font-bold flex items-center gap-1.5 uppercase tracking-wider">{locale === 'en' ? 'Coming Soon' : '준비 중'}</p>
         </div>
       </div>
 
