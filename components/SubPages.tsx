@@ -143,36 +143,71 @@ export const SolutionPage: React.FC<{ activeTab: string; onTabChange: (t: string
         )}
 
         {activeTab === 'data' && (
-          <div>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-secondary mb-8 tracking-tight">Data Analytics</h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                { color: 'blue', title: locale === 'en' ? 'Activity' : '활동량 분석', desc: locale === 'en' ? 'Detect health decline by monitoring daily and weekly activity patterns.' : '일간/주간 활동량을 측정하여 건강 악화를 조기에 감지합니다.' },
-                { color: 'green', title: locale === 'en' ? 'Sleep' : '수면 리포트', desc: locale === 'en' ? 'Analyze tossing and breathing rate during sleep to generate quality reports.' : '수면 중 뒤척임과 호흡수를 분석하여 수면의 질을 데이터화합니다.' },
-                { color: 'red', title: locale === 'en' ? 'Duration' : '이상 체류 알림', desc: locale === 'en' ? 'Alert guardians if someone stays in the bathroom longer than usual.' : '화장실 체류 시간이 평소보다 길어지면 즉각 보호자에게 알립니다.' }
-              ].map((item, i) => (
-                <div key={i} className="bg-white p-8 rounded-lg border border-gray-100 shadow-sm hover:shadow-md hover:border-gray-200 transition-all duration-300 flex flex-col justify-between min-h-[280px]">
-                  <div>
-                    <div className="flex justify-between items-start mb-6">
-                      <span className="text-[9px] font-bold text-gray-400 tracking-wider uppercase">{locale === 'en' ? 'Data Insight' : '수집 데이터'}</span>
-                      <span className={`text-[9px] font-bold px-2 py-0.5 rounded ${item.color === 'blue' ? 'bg-blue-50 text-blue-600' : item.color === 'green' ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600'}`}>
-                        {item.color.toUpperCase()}
-                      </span>
-                    </div>
-                    <h3 className="text-lg font-bold text-secondary mb-3 tracking-tight">{item.title}</h3>
-                    <p className="text-gray-500 text-xs md:text-sm leading-relaxed font-medium">{item.desc}</p>
-                  </div>
-                  
-                  {/* Dashboard Graphic Mock */}
-                  <div className="border-t border-gray-50 pt-4 flex items-center justify-between text-xs text-gray-400 font-semibold">
-                    <div className="flex items-center gap-1.5">
-                      <span className={`w-1.5 h-1.5 rounded-full ${item.color === 'blue' ? 'bg-blue-500 animate-pulse' : item.color === 'green' ? 'bg-green-500 animate-pulse' : 'bg-red-500 animate-pulse'}`}></span>
-                      <span>{locale === 'en' ? 'Live System' : '실시간 모니터링'}</span>
-                    </div>
-                    <span className="text-secondary font-bold text-[10px] uppercase tracking-wider">{locale === 'en' ? 'Verified' : '검증됨'}</span>
-                  </div>
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            {/* Left Column: Context Explanation */}
+            <div className="lg:col-span-5">
+              <span className="text-primary font-bold text-xs uppercase tracking-widest block mb-2">Integrated AI Engine</span>
+              <h2 className="text-2xl md:text-3xl font-extrabold text-secondary mb-6 tracking-tight">AI Fall Risk Prediction</h2>
+              <p className="text-sm md:text-base text-gray-500 mb-8 leading-relaxed font-medium">
+                {locale === 'en' 
+                  ? 'Instead of analyzing behavior patterns in isolation, the Hugnics AI engine integrates daily activity, sleep patterns, and bathroom stays to proactively predict potential fall risk probability.'
+                  : '활동량 분석, 수면 분석, 화장실 이상 체류 데이터를 개별적으로 파악하는 데 그치지 않고, 허그닉스 AI 엔진이 이 세 가지 핵심 데이터를 종합적으로 통합 분석하여 고령자나 환자의 실시간 낙상 위험 확률을 정밀하게 예측합니다.'}
+              </p>
+              
+              <div className="border border-primary/20 bg-orange-50/30 p-6 rounded-lg">
+                <span className="text-[10px] font-bold text-primary tracking-widest uppercase block mb-1.5">Key Benefit</span>
+                <p className="text-xs md:text-sm text-gray-600 font-semibold leading-relaxed">
+                  {locale === 'en'
+                    ? 'Transitioning from passive post-accident detection to proactive prevention by analyzing continuous lifestyle indicators.'
+                    : '단순히 사고 발생 후 감지하는 소극적인 모니터링을 넘어, 라이프스타일 징후 분석을 통해 낙상 사고를 선제적으로 예측하고 예방합니다.'}
+                </p>
+              </div>
+            </div>
+            
+            {/* Right Column: Dynamic Flow Infographic Card */}
+            <div className="lg:col-span-7 bg-gray-50 border border-gray-100 rounded-xl p-8 flex flex-col gap-6 shadow-sm">
+              <div className="text-center mb-1">
+                <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Multi-Data Integration Flow</span>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {/* Source 1 */}
+                <div className="bg-white border border-gray-150 p-4 rounded shadow-sm text-center">
+                  <Activity className="text-primary mx-auto mb-3" size={20} />
+                  <div className="text-xs font-bold text-secondary mb-1.5">{locale === 'en' ? 'Activity Analysis' : '활동량 분석'}</div>
+                  <div className="text-[9px] text-gray-400 leading-normal">{locale === 'en' ? 'Daily behavioral tracking' : '일간/주간 행동 패턴 추적'}</div>
                 </div>
-              ))}
+                
+                {/* Source 2 */}
+                <div className="bg-white border border-gray-150 p-4 rounded shadow-sm text-center">
+                  <HelpCircle className="text-primary mx-auto mb-3" size={20} />
+                  <div className="text-xs font-bold text-secondary mb-1.5">{locale === 'en' ? 'Sleep Analytics' : '수면 분석'}</div>
+                  <div className="text-[9px] text-gray-400 leading-normal">{locale === 'en' ? 'Sleep quality & vital trends' : '뒤척임 및 호흡 패턴 측정'}</div>
+                </div>
+                
+                {/* Source 3 */}
+                <div className="bg-white border border-gray-150 p-4 rounded shadow-sm text-center">
+                  <Lock className="text-primary mx-auto mb-3" size={20} />
+                  <div className="text-xs font-bold text-secondary mb-1.5">{locale === 'en' ? 'Bathroom Duration' : '화장실 이상체류'}</div>
+                  <div className="text-[9px] text-gray-400 leading-normal">{locale === 'en' ? 'Over-stay alert tracking' : '체류 시간 이상 징후 감지'}</div>
+                </div>
+              </div>
+              
+              {/* Converging Indicator */}
+              <div className="flex justify-center -my-3">
+                <div className="w-[1px] h-6 bg-gray-200"></div>
+              </div>
+              
+              {/* Converged AI Engine Output */}
+              <div className="bg-secondary text-white border border-white/5 p-6 rounded shadow-md text-center">
+                <Cpu className="text-primary mx-auto mb-3 animate-pulse" size={24} />
+                <div className="text-sm font-bold text-white mb-2">{locale === 'en' ? 'Integrated AI Risk Prediction' : '통합 AI 낙상 위험 예측'}</div>
+                <p className="text-[10px] text-gray-400 max-w-md mx-auto leading-relaxed">
+                  {locale === 'en'
+                    ? 'Aggregates lifestyle factors to predict pre-accident warning signs and changes in fall probability.'
+                    : '수집된 다차원 지표들을 통합 학습하여, 단순 낙상 상태 식별을 넘어 사전 징후 및 낙상 위험 확률의 변화를 선제적으로 도출합니다.'}
+                </p>
+              </div>
             </div>
           </div>
         )}
