@@ -87,12 +87,6 @@ export const Navbar: React.FC<{ onOpenContact: () => void; onNavigate: (p: strin
           </div>
 
           <button 
-            onClick={() => window.open('https://hugnics-web-926013440113.us-west1.run.app/', '_blank')} 
-            className="text-xs font-semibold text-gray-500 hover:text-secondary uppercase tracking-wider"
-          >
-            {t.common.preview}
-          </button>
-          <button 
             onClick={onOpenContact} 
             className="bg-primary text-white px-5 py-2.5 rounded text-xs font-bold hover:bg-orange-700 tracking-wider transition-all uppercase"
           >
@@ -162,12 +156,6 @@ export const Hero: React.FC<{ onOpenContact: () => void; onNavigate: (p: string,
             >
               {locale === 'en' ? 'Free Trial' : '무료 체험단 신청하기'} <ArrowRight size={18} strokeWidth={2.5} />
             </button>
-            <button 
-              onClick={() => window.open('https://hugnics-web-926013440113.us-west1.run.app/', '_blank')} 
-              className="bg-secondary text-white px-8 py-3.5 rounded text-sm font-bold tracking-wider hover:bg-black transition-all flex items-center justify-center gap-2 uppercase shadow-sm"
-            >
-              <Settings size={16} /> {t.common.preview}
-            </button>
           </div>
         </div>
 
@@ -176,18 +164,20 @@ export const Hero: React.FC<{ onOpenContact: () => void; onNavigate: (p: string,
           <div className="relative w-full max-w-md lg:max-w-none border border-gray-100 p-4 bg-white shadow-xl rounded-2xl">
             <div className="overflow-hidden rounded-xl aspect-[4/3] bg-gray-50">
               <img 
-                src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&q=85&w=1200" 
+                src="/hero-meeting.jpg" 
                 className="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-700" 
-                alt="Hugnics Care Core Value" 
+                alt="Hugnics Core Value Team Meeting" 
                 loading="eager" 
               />
             </div>
             
             {/* Elegant text info overlay */}
-            <div className="absolute -bottom-6 -left-6 bg-secondary text-white p-6 rounded-xl shadow-2xl hidden md:block max-w-[245px] border border-white/10">
-              <div className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1.5">Technology</div>
+            <div className="absolute -bottom-6 -left-6 bg-secondary text-white p-6 rounded-xl shadow-2xl hidden md:block max-w-[280px] border border-white/10">
+              <div className="text-primary text-[10px] font-bold tracking-widest uppercase mb-1.5">
+                {locale === 'en' ? 'Field Visit' : '현장 실사'}
+              </div>
               <p className="text-xs font-semibold text-gray-300 leading-normal">
-                {locale === 'en' ? '60GHz mmWave radar sensing system.' : '60GHz 고주파 전파 기술 기반의 정밀 인체 감지 센서.'}
+                {locale === 'en' ? 'We visit in person to verify potential hazards.' : '저희는 직접 찾아가서 위험을 확인합니다.'}
               </p>
             </div>
           </div>
