@@ -1,0 +1,6 @@
+/* Hugnics Official Website Base Stylesheet */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}

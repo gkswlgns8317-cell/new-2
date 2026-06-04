@@ -1,0 +1,8 @@
+node_modules
+npm-debug.log
+.git
+.env
+dist
+# 아래 파일들은 절대 무시되면 안 됩니다.
+# !sitemap.xml
+# !robots.txt
